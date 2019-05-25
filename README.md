@@ -1,9 +1,9 @@
 ![Logo do projeto](http://maratona.ic.ufmt.br/wp-content/uploads/2017/06/LogoMaratona.jpg)
 
 # Maratona de Programação
-> **PO:** Nome do PO          |       **Scrum Master:** Nome do Scrum Master
+> **PO:** Lucas Romero         |       **Scrum Master:** Ruben Galvão
 
-Escreva aqui uma breve descrição sobre o projeto e qual objetivo dele.
+Website da maratona de programção do IC-UFMT.
 
 ## Documentos do projeto
 
@@ -11,13 +11,18 @@ Escreva aqui uma breve descrição sobre o projeto e qual objetivo dele.
 
 ## Instalando / Comece aqui
 
-Escreva aqui a configuração, o que deve e como ser instalado para rodar o projeto.
+Depois de clonar o projeto entre na pasta raiz.
 
-```shell
-Escreva os comandos aqui
 ```
-
-Aqui você explica o que realmente acontece quando você executa o código acima.
+composer install
+npm install
+npm run prod
+cp .env.example .env
+php artisan key:generate
+// Altere o .env para confiugração do banco desejado
+php artisan migrate
+php artisan storage:link
+```
 
 ## Desenvolvendo
 
