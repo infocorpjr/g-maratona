@@ -17,8 +17,11 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Rota para página inicial do dashboard
+Route::get('/home', 'HomeController@index')
+    ->name('home')
+    ->middleware('verified');
 
-Route::group(["prefix" => "admin", "middleware" => ["auth", "verified"]], function () {
+Route::group(["middleware" => ["auth", "verified"]], function () {
 
 });
