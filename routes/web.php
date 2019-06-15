@@ -12,13 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('website.index');
+    return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(["prefix" => "admin", "middleware" => ["auth"]], function () {
+Route::group(["prefix" => "admin", "middleware" => ["auth", "verified"]], function () {
 
 });

@@ -11,10 +11,5 @@ const mix = require('laravel-mix');
  |
  */
 
-// Dependencias do website
-mix.js('resources/assets/js/website.js', 'public/js')
-   .sass('resources/assets/sass/website/website.scss', 'public/css');
-
-// Dependencias do CMS
-mix.js('resources/assets/js/dashboard.js', 'public/js')
-    .sass('resources/assets/sass/dashboard/dashboard.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js')
+    .sass('resources/assets/sass/app.scss', 'public/css');
