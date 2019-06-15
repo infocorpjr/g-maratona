@@ -4,6 +4,11 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
 
 body {
 
@@ -12,4 +17,8 @@ body {
 .navbar-laravel {
   padding-top: 1.5%;
   padding-bottom: 1.5%;
+}
+
+.card {
+  min-height: 100%;
 }
