@@ -53,7 +53,7 @@ codestyle:
 database:
   stage: test
   script:
-    - touch storage/database.sqlite
+    - touch database/database.sqlite
     - php artisan migrate --seed
 
 
@@ -73,7 +73,6 @@ phpunit:
     - php artisan migrate
     - /etc/init.d/apache2 start
     - php artisan dusk
-
 
 ################################################################################
 # DEPLOY STAGE                                                                 #
