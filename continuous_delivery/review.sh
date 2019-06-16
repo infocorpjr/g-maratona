@@ -55,7 +55,7 @@ if [ -d /var/www/$DOMAIN ]; then
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link
     sudo chown www-data:www-data ./ -R
-    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
+    # curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
     exit
 fi
 
@@ -77,8 +77,12 @@ if [ ! -d /var/www/$DOMAIN ]; then
     sudo a2ensite $DOMAIN
     sudo /etc/init.d/apache2 restart
     cd /var/www/
-    git clone -b $GIT_BRANCH $GIT_REMOTE_SSH $DOMAIN
+    # Neste caso o sudo permite a execução se sem senha
+    sudo mkdir $DOMAIN
     cd $DOMAIN
+    sudo chown $USER:$USER . -R
+
+    git clone -b $GIT_BRANCH $GIT_REMOTE_SSH .
 
     # VARIÁVEIS DE AMBIENTE
     cp .env.review .env
@@ -95,6 +99,6 @@ if [ ! -d /var/www/$DOMAIN ]; then
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link
     sudo chown www-data:www-data storage -R
-    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
+    # curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
     exit
 fi
