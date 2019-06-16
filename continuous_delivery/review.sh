@@ -46,11 +46,11 @@ if [ -d /var/www/$DOMAIN ]; then
     npm ci && npm run prod
 
     # BANCO DE DADOS & STORAGE
-    if [ -f storage/database.sqlite ]; then
-        sudo rm storage/database.sqlite
+    if [ -f database/database.sqlite ]; then
+        sudo rm database/database.sqlite
     fi
 
-    sudo touch storage/database.sqlite && sudo php artisan migrate:fresh --seed
+    sudo touch database/database.sqlite && sudo php artisan migrate:fresh --seed
 
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link
@@ -90,7 +90,7 @@ if [ ! -d /var/www/$DOMAIN ]; then
     npm ci && npm run prod
 
     # BANCO DE DADOS & STORAGE
-    touch storage/database.sqlite && php artisan migrate --seed
+    touch database/database.sqlite && php artisan migrate --seed
 
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link
