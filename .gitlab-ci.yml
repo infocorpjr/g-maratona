@@ -48,7 +48,6 @@ codestyle:
     # Verificação do padrão PSR2.
     - vendor/bin/phpcs --standard=PSR2 --extensions=php app
 
-
 # IMPORTANTE! Testa a migração do banco do banco de dados (NO SQLITE)
 database:
   stage: test
@@ -56,12 +55,10 @@ database:
     - touch database/database.sqlite
     - php artisan migrate --seed
 
-
 phpunit:
   stage: test
   script:
     - vendor/bin/phpunit --coverage-text --colors=never
-
 
 # DESATIVADO!
 .e2e:
