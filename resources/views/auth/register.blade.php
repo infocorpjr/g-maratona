@@ -50,11 +50,12 @@
                                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}  p-1 border-0"
                                    name="name"
                                    value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                        </div>
+                        <div class="col-12">
                             @if ($errors->has('name'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                <small class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </small>
                             @endif
                         </div>
                     </div>
@@ -63,17 +64,17 @@
                         <label for="email" class="col-auto col-form-label">
                             <b class="text-danger">var</b> email =
                         </label>
-
-                        <div class="col-md-6">
+                        <div class="col">
                             <input id="email" type="email"
-                                   class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}  p-1 border-0"
+                                   class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}  p-0 pl-1 border-0"
                                    name="email"
                                    value="{{ old('email') }}" required autocomplete="email">
-
+                        </div>
+                        <div class="col-12">
                             @if ($errors->has('email'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                <small class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </small>
                             @endif
                         </div>
                     </div>
@@ -82,16 +83,16 @@
                         <label for="password" class="col-auto col-form-label">
                             <b class="text-danger">var</b> password =
                         </label>
-
-                        <div class="col-md-6">
+                        <div class="col">
                             <input id="password" type="password"
                                    class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} p-1 border-0"
                                    name="password" required autocomplete="new-password">
-
+                        </div>
+                        <div class="col-12">
                             @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                <small class="text-danger" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </small>
                             @endif
                         </div>
                     </div>
@@ -101,7 +102,6 @@
                                class="col-auto col-form-label">
                             <b class="text-danger">var</b> confirm =
                         </label>
-
                         <div class="col-md-6">
                             <input id="password-confirm" type="password" class="form-control  p-1 border-0"
                                    name="password_confirmation" required autocomplete="new-password">
@@ -112,7 +112,7 @@
                     <div class="form-group row mb-0">
                         <div class="col"></div>
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn">
                                 {{ __('Register') }}
                             </button>
                         </div>
