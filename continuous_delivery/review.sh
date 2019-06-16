@@ -55,7 +55,7 @@ if [ -d /var/www/$DOMAIN ]; then
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link
     sudo chown www-data:www-data ./ -R
-    # curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
+    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
     exit
 fi
 
@@ -99,6 +99,6 @@ if [ ! -d /var/www/$DOMAIN ]; then
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link
     sudo chown www-data:www-data storage -R
-    # curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
+    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
     exit
 fi
