@@ -3,14 +3,14 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-12 col-md-6">
                 <div class="card">
                     <div class="card-header">
                         @guest
-                            Bem vindo!
+                            Olá!
                         @else
-                            Bem vindo! { <b>{{ Auth::user()->name }}</b> } <br>
-                            <i class="fa fa-envelope text-warning"></i> {{ Auth::user()->email }}
+                            Olá! { <b>{{ Auth::user()->name }}</b> } <br>
+                            <i class="fa fa-envelope text-white-50"></i> {{ Auth::user()->email }}
                         @endguest
                     </div>
                     <div class="card-body">
@@ -22,53 +22,38 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
+            <div class="col-12 col-md-3">
+                <a href="{{route('user.index')}}">
+                    <div class="card card-a">
+                        <div class="card-body">
+                            <i class="fa fa-5x fa-user-friends text-white-50"></i>
+                            <h5 class="text-center text-white">Usuário</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-3">
+                <a href="{{route('user.index')}}">
+                    <div class="card card-b">
+                        <div class="card-body">
+                            <i class="fa fa-5x fa-laptop-code text-white-50"></i>
+                            <h5 class="text-center text-white">Maratona</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-4">
+                <a href="{{route('user.index')}}">
+                    <div class="card card-c">
+                        <div class="card-body">
+                            <i class="fa fa-5x fa-file-invoice text-white-50"></i>
+                            <h5 class="text-center text-white">Artigo</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-8">
 
-                    </div>
-                    <div class="card-body">
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-auto">
-                <a href="{{route('user.index')}}">
-                    <div class="card card">
-                        <div class="card-body">
-                            <i class="fa fa-5x fa-user-friends text-success"></i>
-                            <div class="text-center text-success">Usuário</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-auto">
-                <a href="{{route('user.index')}}">
-                    <div class="card card">
-                        <div class="card-body">
-                            <i class="fa fa-5x fa-laptop-code text-info"></i>
-                            <div class="text-center text-white">Maratona</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-auto">
-                <a href="{{route('user.index')}}">
-                    <div class="card card">
-                        <div class="card-body">
-                            <i class="fa fa-5x fa-tshirt text-success"></i>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-auto">
-                <a href="{{route('user.index')}}">
-                    <div class="card card">
-                        <div class="card-body">
-                            <i class="fa fa-5x fa-file text-success"></i>
-                        </div>
-                    </div>
-                </a>
             </div>
         </div>
     </div>

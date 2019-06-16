@@ -1,5 +1,5 @@
 // Typography
-$font-family-sans-serif: 'Comfortaa', cursive;
+$font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 1rem;
 $line-height-base: 1.6;
 
@@ -7,6 +7,7 @@ $line-height-base: 1.6;
 $blue: #3490dc;
 $indigo: #6574cd;
 $purple: #9561e2;
+$rebeccapurple: rebeccapurple;
 $pink: #f66D9b;
 $red: #e3342f;
 $orange: #f6993f;
@@ -260,8 +261,8 @@ $border-width: 4px !default;
 $border-color: $gray-300 !default;
 
 $border-radius: .0rem !default;
-$border-radius-lg: .75rem !default;
-$border-radius-sm: .75rem !default;
+$border-radius-lg: .0rem !default;
+$border-radius-sm: .0rem !default;
 
 $rounded-pill: 50rem !default;
 
