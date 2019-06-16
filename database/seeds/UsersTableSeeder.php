@@ -1,7 +1,7 @@
 <?php
 
-use App\User;
 use Illuminate\Database\Seeder;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,10 +12,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Adminstrador do sistema',
-            'email' => 'email@email.com',
-            'password' => bcrypt('123456'),
-        ]);
+        $output = new ConsoleOutput();
+        factory(\App\User::class, rand(1000, 1500))->create()->each(function ($user) use ($output) {
+            $output->writeln("Criando usuário { " . $user->name . " }");
+            $user->actor()->save(factory(\App\Models\Actor::class)->make([
+                'is_administrator' => false,
+                'is_technician' => false,
+                'is_participant' => true,
+                'is_voluntary' => false
+            ]));
+        });
     }
 }

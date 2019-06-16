@@ -23,5 +23,5 @@ Route::get('/home', 'HomeController@index')
     ->middleware('verified');
 
 Route::group(["middleware" => ["auth", "verified"]], function () {
-
+    Route::resource('user', 'User\UserController');
 });

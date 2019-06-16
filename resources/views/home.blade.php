@@ -9,7 +9,8 @@
                         @guest
                             Bem vindo!
                         @else
-                            Bem vindo! {{ Auth::user()->name }}
+                            Bem vindo! { <b>{{ Auth::user()->name }}</b> } <br>
+                            <i class="fa fa-envelope text-warning"></i> {{ Auth::user()->email }}
                         @endguest
                     </div>
                     <div class="card-body">
@@ -24,20 +25,50 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-header">
-                        dpoaksdpoka
+
                     </div>
                     <div class="card-body">
-                        apksdpsa
+
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="card card">
-                    <div class="card-body">
-                        <i class="fa fa-8x fa-users"></i>
+            <div class="col-auto">
+                <a href="{{route('user.index')}}">
+                    <div class="card card">
+                        <div class="card-body">
+                            <i class="fa fa-5x fa-user-friends text-success"></i>
+                            <div class="text-center text-success">Usuário</div>
+                        </div>
                     </div>
-                </div>
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="{{route('user.index')}}">
+                    <div class="card card">
+                        <div class="card-body">
+                            <i class="fa fa-5x fa-laptop-code text-info"></i>
+                            <div class="text-center text-white">Maratona</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="{{route('user.index')}}">
+                    <div class="card card">
+                        <div class="card-body">
+                            <i class="fa fa-5x fa-tshirt text-success"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="{{route('user.index')}}">
+                    <div class="card card">
+                        <div class="card-body">
+                            <i class="fa fa-5x fa-file text-success"></i>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>

@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Cms\Image;
+namespace App\Http\Controllers\User;
 
-use App\Http\Requests\cms\Image\ImageStoreRequest;
-use App\Http\Requests\cms\Image\ImageUpdadeRequest;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ImageController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,9 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::paginate();
+        return view('user.index')
+            ->with('users', $users);
     }
 
     /**
@@ -32,10 +33,10 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ImageStoreRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -43,7 +44,7 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -54,7 +55,7 @@ class ImageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,11 +66,11 @@ class ImageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ImageUpdadeRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -77,7 +78,7 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -1,3 +1,6 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+// Variables
 // Typography
 $font-family-sans-serif: 'Comfortaa', cursive;
 $font-size-base: 1rem;
@@ -822,7 +825,7 @@ $card-border-color: rgba($black, .0) !default;
 $card-inner-border-radius: calc(#{$card-border-radius} - #{$card-border-width}) !default;
 $card-cap-bg: rgba($black, .0) !default;
 $card-cap-color: inherit !default;
-$card-bg: $gray-800 !default;
+$card-bg: rgba($gray-800, .0) !default;
 
 $card-img-overlay-padding: 1.25rem !default;
 
@@ -1109,3 +1112,41 @@ $positions: static, relative, absolute, fixed, sticky !default;
 
 $print-page-size: a3 !default;
 $print-body-min-width: map-get($grid-breakpoints, "lg") !default;
+// Bootstrap
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/card';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/utilities';
+
+html,
+body,
+main {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.box {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.card {
+  &-login {
+    min-width: 500px;
+    font-family: monospace;
+  }
+}
+
+.m {
+  width: 300px;
+}
