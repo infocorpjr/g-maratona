@@ -1,0 +1,121 @@
+image: infocorpjr/nepes
+
+stages:
+  - build
+  - test
+  - deploy
+
+before_script:
+  - export TERM=linux
+  - export DEBIAN_FRONTEND=noninteractive
+
+################################################################################
+# BUILD STAGE                                                                  #
+################################################################################
+
+build:
+  stage: build
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-environment
+    paths:
+      - tests/Browser/screenshots/
+      - vendor/
+      - node_modules/
+      - .env
+  artifacts:
+    expire_in: 2h
+    paths:
+      - tests/Browser/screenshots/
+      - vendor/
+      - node_modules/
+      - .env
+  script:
+    - composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+    - npm install
+    - npm run prod
+    - cp .env.example .env
+    - php artisan key:generate
+    - chown www-data:www-data storage -R
+
+
+################################################################################
+# TEST STAGE                                                                   #
+################################################################################
+
+codestyle:
+  stage: test
+  script:
+    # Verificação do padrão PSR2.
+    - vendor/bin/phpcs --standard=PSR2 --extensions=php app
+
+
+# IMPORTANTE! Testa a migração do banco do banco de dados (NO SQLITE)
+database:
+  stage: test
+  script:
+    - touch storage/database.sqlite
+    - php artisan migrate --seed
+
+
+phpunit:
+  stage: test
+  script:
+    - vendor/bin/phpunit --coverage-text --colors=never
+
+
+# DESATIVADO!
+.e2e:
+  stage: test
+  script:
+    - rm -R /var/www
+    - ln -s $CI_PROJECT_DIR /var/www
+    - touch database/database.sqlite
+    - php artisan migrate
+    - /etc/init.d/apache2 start
+    - php artisan dusk
+
+
+################################################################################
+# DEPLOY STAGE                                                                 #
+################################################################################
+
+.init_ssh: &init_ssh |
+  eval $(ssh-agent   -s)
+  echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  mkdir -p ~/.ssh
+  chmod 700 ~/.ssh
+  ssh-keyscan "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+  chmod 644 ~/.ssh/known_hosts
+
+deploy_review:
+  stage: deploy
+  script:
+    - *init_ssh
+    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < ./continuous_delivery/review.sh
+  environment:
+    name: review
+    url: http://review5.infocorpjr.com
+  only:
+    - master
+
+deploy_pre_production:
+  stage: deploy
+  script:
+    - *init_ssh
+    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < ./continuous_delivery/pre_production.sh
+  environment:
+    name: pre_production
+    url: http://maratona.infocorpjr.com
+  only:
+    - pre_production
+
+deploy_production:
+  stage: deploy
+  script:
+    - echo "A aplicação está indo para produção!"
+  environment:
+    name: production
+    url: https://example.com
+  when: manual
+  only:
+    - master
