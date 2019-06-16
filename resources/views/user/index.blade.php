@@ -4,62 +4,27 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Email</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @forelse ($users as $user)
-                        <tr>
-                            <td>
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <i class="fa fa-2x fa-user-circle text-warning"></i>
-                                    </div>
-                                    <div class="col">
-                                        {{$user->name}} <br>
-                                        <small>{{$user->email}}</small>
-                                    </div>
+
+                @forelse ($users as $user)
+                    <div class="card card-b mb-4">
+                        <div class="card-body p-1">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <i class="fa fa-5x fa-user-circle text-white-50"></i>
                                 </div>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <form class="form">
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="{{md5($user->id . 'a')}}" name="customRadioInline1"
-                                                       class="custom-control-input">
-                                                <label class="custom-control-label" for="{{md5($user->id . 'a')}}">
-                                                    Toggle this custom radio
-                                                </label>
-                                            </div>
-                                            <br>
-                                            <div class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" id="{{md5($user->id . 'b')}}" name="customRadioInline1"
-                                                       class="custom-control-input">
-                                                <label class="custom-control-label" for="{{md5($user->id . 'b')}}">Or toggle
-                                                    this other custom radio</label>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fa fa-2x fa-trash text-danger"></i>
-                                    </div>
+                                <div class="col">
+                                    {{$user->name}} <br>
+                                    <small>{{$user->email}}</small>
                                 </div>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <th class="text-center text-warning" colspan="2">
-                                Nenhum usuário encontrado ...
-                            </th>
-                        </tr>
-                    @endforelse
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+
+                    Nenhum usuário encontrado ...
+
+                @endforelse
+
             </div>
         </div>
     </div>

@@ -3,26 +3,104 @@
 // Variables
 @import 'variables';
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+//@import "~bootstrap/scss/type";
+//@import "~bootstrap/scss/images";
+//@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+//@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+//@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+//@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/input-group";
+//@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+//@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+//@import "~bootstrap/scss/badge";
+//@import "~bootstrap/scss/jumbotron";
+@import "~bootstrap/scss/alert";
+//@import "~bootstrap/scss/progress";
+//@import "~bootstrap/scss/media";
+//@import "~bootstrap/scss/list-group";
+//@import "~bootstrap/scss/close";
+//@import "~bootstrap/scss/toasts";
+//@import "~bootstrap/scss/modal";
+//@import "~bootstrap/scss/tooltip";
+//@import "~bootstrap/scss/popover";
+//@import "~bootstrap/scss/carousel";
+//@import "~bootstrap/scss/spinners";
+// @import "~bootstrap/scss/utilities";
+//@import "~bootstrap/scss/utilities/align";
+//@import "~bootstrap/scss/utilities/background";
+@import "~bootstrap/scss/utilities/borders";
+//@import "~bootstrap/scss/utilities/clearfix";
+@import "~bootstrap/scss/utilities/display";
+//@import "~bootstrap/scss/utilities/embed";
+@import "~bootstrap/scss/utilities/flex";
+//@import "~bootstrap/scss/utilities/float";
+//@import "~bootstrap/scss/utilities/overflow";
+//@import "~bootstrap/scss/utilities/position";
+//@import "~bootstrap/scss/utilities/screenreaders";
+//@import "~bootstrap/scss/utilities/shadows";
+@import "~bootstrap/scss/utilities/sizing";
+//@import "~bootstrap/scss/utilities/stretched-link";
+@import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/utilities/text";
+//@import "~bootstrap/scss/utilities/visibility";
+
+//@import "~bootstrap/scss/print";
 // Font Awesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 
-body {
-
+html,
+body,
+main {
+  height: 100%;
 }
 
 .navbar-laravel {
   padding-top: 1.5%;
   padding-bottom: 1.5%;
-  border-bottom: 1px dotted #444;
+  background: url("../svg/m.svg") no-repeat center center;
+  background-size: cover;
+  border-bottom: 1px solid #444;
+}
+
+.main {
+  flex-direction: column;
+  display: flex;
+
+  &-top {
+    flex: 0 0 auto;
+    height: auto;
+    max-height: 100%;
+  }
+
+  &-middle {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-height: 100%;
+  }
 }
 
 .card {
-  min-height: 100%;
-  border: 1px dotted #555;
+  border: 1px solid #555;
+
+  &-box {
+    min-height: 100%;
+  }
 
   &-body {
     z-index: 99;
@@ -35,7 +113,7 @@ body {
       position: absolute;
     }
 
-    & > .card-body > i {
+    & > .card-body i {
       background-clip: text !important;
       color: transparent;
     }
@@ -58,7 +136,7 @@ body {
       background: map_get($colors, 'blue');
     }
 
-    & > .card-body > i {
+    & > .card-body i {
       background: linear-gradient(map_get($colors, 'teal'), map_get($colors, 'blue'));
     }
   }
@@ -80,7 +158,7 @@ body {
       background: map_get($colors, 'purple');
     }
 
-    & > .card-body > i {
+    & > .card-body i {
       background: linear-gradient(map_get($colors, 'blue'), map_get($colors, 'purple'));
     }
   }
@@ -102,7 +180,7 @@ body {
       background: map_get($colors, 'teal');
     }
 
-    & > .card-body > i {
+    & > .card-body i {
       background: linear-gradient(map_get($colors, 'blue'), map_get($colors, 'teal'));
     }
   }
