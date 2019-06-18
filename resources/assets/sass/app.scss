@@ -1,4 +1,3 @@
-
 // Variables
 @import 'variables';
 // Bootstrap
@@ -55,7 +54,6 @@
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/text";
 //@import "~bootstrap/scss/utilities/visibility";
-
 //@import "~bootstrap/scss/print";
 // Font Awesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
@@ -78,24 +76,27 @@ main {
 }
 
 .main {
-  flex-direction: column;
-  display: flex;
+  width: 100%;
+  table-layout: fixed;
+  display: table;
 
-  &-top {
-    flex: 0 0 auto;
-    height: auto;
-    max-height: 100%;
+  &-top,
+  &-middle {
+    display: table-row;
+
+    &-content {
+      display: table-cell;
+    }
   }
 
   &-middle {
-    flex-basis: 0;
-    flex-grow: 1;
-    max-height: 100%;
+    height: 100%;
   }
 }
 
 .card {
-  border: 1px solid #555;
+  border: 1px solid black;
+  box-shadow: 0 0 30px rgba(black, .5);
 
   &-box {
     min-height: 100%;
@@ -103,6 +104,12 @@ main {
 
   &-body {
     z-index: 99;
+
+    &-number {
+      font-size: 5rem;
+      font-weight: bold;
+      line-height: 1;
+    }
   }
 
   &-a, &-b, &-c {

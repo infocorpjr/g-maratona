@@ -65,7 +65,7 @@ body {
   line-height: 1.6;
   color: #fff;
   text-align: left;
-  background-color: #101010;
+  background-color: #070707;
 }
 
 [tabindex="-1"]:focus {
@@ -3144,8 +3144,8 @@ input[type=button].btn-block {
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
   color: #495057;
-  background-color: #101010;
-  border-color: #dee2e6 #dee2e6 #101010;
+  background-color: #070707;
+  border-color: #dee2e6 #dee2e6 #070707;
 }
 
 .nav-tabs .dropdown-menu {
@@ -3583,7 +3583,7 @@ input[type=button].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #343a40;
+  background-color: #191919;
   background-clip: border-box;
   border: 12px solid rgba(0, 0, 0, 0);
   border-radius: 0rem;
@@ -13428,24 +13428,28 @@ main {
 }
 
 .main {
-  flex-direction: column;
-  display: flex;
+  width: 100%;
+  table-layout: fixed;
+  display: table;
 }
 
-.main-top {
-  flex: 0 0 auto;
-  height: auto;
-  max-height: 100%;
+.main-top,
+.main-middle {
+  display: table-row;
+}
+
+.main-top-content,
+.main-middle-content {
+  display: table-cell;
 }
 
 .main-middle {
-  flex-basis: 0;
-  flex-grow: 1;
-  max-height: 100%;
+  height: 100%;
 }
 
 .card {
-  border: 1px solid #555;
+  border: 1px solid black;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .card-box {
@@ -13454,6 +13458,12 @@ main {
 
 .card-body {
   z-index: 99;
+}
+
+.card-body-number {
+  font-size: 5rem;
+  font-weight: bold;
+  line-height: 1;
 }
 
 .card-a:before,
