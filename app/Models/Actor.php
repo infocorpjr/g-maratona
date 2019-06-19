@@ -12,7 +12,7 @@ class Actor extends Model
      *
      * @var bool
      */
-    public $timestamps = false;
+    // public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +20,7 @@ class Actor extends Model
      * @var array
      */
     protected $fillable = [
-        'is_administrator', 'is_technician', 'is_participant', 'is_voluntary'
+        'user_id', 'is_administrator', 'is_technician', 'is_voluntary', 'is_participant',
     ];
 
     /**
@@ -39,8 +39,9 @@ class Actor extends Model
      */
     protected $casts = [
         'is_administrator' => 'boolean',
-        'is_design' => 'boolean',
-        'is_player' => 'boolean',
+        'is_technician' => 'boolean',
+        'is_voluntary' => 'boolean',
+        'is_participant' => 'boolean',
     ];
 
     /**

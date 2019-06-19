@@ -21,12 +21,9 @@ class CreateActorsTable extends Migration
             // Atenção! O padrão é ser participante ...
             $table->boolean('is_administrator')->default(false)->comment("Determina se o ator é administrador");
             $table->boolean('is_technician')->default(false)->comment('Determina se o ator é técnico');
-            $table->boolean('is_participant')->default(true)->comment('Determina se o ator é participante');
             $table->boolean('is_voluntary')->default(false)->comment('Determina se o ator é voluntário');
-        });
-
-        Schema::table('actors', function (Blueprint $table) {
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->boolean('is_participant')->default(true)->comment('Determina se o ator é participante');
+            $table->timestamps();
         });
     }
 
