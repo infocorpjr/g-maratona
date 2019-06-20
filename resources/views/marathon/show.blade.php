@@ -8,14 +8,9 @@
 @endpush
 
 @section('content')
-    <script src=""></script>
     <div class="container">
         <h1 class="mt-5 pt-5">{{$marathon->title}}</h1>
-        <div class="mt-4">
-            <h3>Descrição</h3>
-            {{$marathon->description}}
-        </div>
-
+        <div class="mt-4"><h3>Descrição</h3> {{$marathon->description}}</div>
         <div class="card card-a mt-5">
             <div class="card-body">
                 <div class="row">
@@ -244,26 +239,25 @@
                 </div>
             </div>
         </div>
+        <div class="card card-c mt-5 mb-5">
+            <div class="card-body">
+                <h3 class="text-uppercase">Upload de imagem</h3>
+                <form id="my-dropzone" class="dropzone mt-5 mb-2 " method="post"
+                      action="{{route('marathon.image.store', $marathon->id)}}"
+                      enctype="multipart/form-data">
+                    @csrf
+                    <div class="fallback">
+                        <input name="image" type="file"/>
+                    </div>
+                </form>
+            </div>
+        </div>
         <div class="card card-b mt-5 mb-5">
             <div class="card-body">
                 @if($marathon->images)
                     <h3 class="text-uppercase">{{$marathon->images->count()}} Fotos</h3>
                 @endif
-                <form id="dropzone" class="dropzone mt-2 mb-2 " style="height: 200px" method="post"
-                      action="{{route('marathon.image.store', $marathon->id)}}"
-                      enctype="multipart/form-data">
-                    @csrf
-                    <div class="fallback">
-                        <input name="file" type="file" multiple/>
-                    </div>
-                    {{--<div class="input-group">
-                        <input class="form-control" type="file" name="image" required>
-                        <div class="input-group-btn">
-                            <button class="btn btn-dark">Upload</button>
-                        </div>
-                    </div>--}}
-                </form>
-                <div class="row">
+                <div class="row mt-5">
                     @forelse($marathon->images as $image)
                         <div class="col-12 col-md-4 col-lg-4 col-xl-4">
                             <div class="w-100">
