@@ -29,6 +29,6 @@ Route::group(["middleware" => ["auth", "verified"]], function () {
         'only' => ['update']
     ]);
     Route::resource('marathon', 'Marathon\MarathonController', [
-        'only' => ['index']
+        'only' => ['index', 'show']
     ]);
 });

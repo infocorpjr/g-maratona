@@ -16,6 +16,26 @@ class Image extends Model
     ];
 
     /**
+     * Outros atributos customizados.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'url' => ''
+    ];
+
+    /**
+     * Get the image's url.
+     *
+     * @param string $value
+     * @return void
+     */
+    public function getUrlAttribute($value)
+    {
+        return asset('storage/' . $this->path);
+    }
+
+    /**
      * Get all of the owning imageable models.
      */
     public function imageable()

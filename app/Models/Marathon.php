@@ -55,6 +55,6 @@ class Marathon extends Model
      */
     public function images()
     {
-        return $this->morphOne(Image::class, 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
     }
 }

@@ -53,12 +53,16 @@ class MarathonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param int $marathonIdentification
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($marathonIdentification)
     {
-        //
+        $marathon = Marathon::with('images')
+            ->findOrFail($marathonIdentification);
+
+        return view('marathon.show')
+            ->with('marathon', $marathon);
     }
 
     /**
