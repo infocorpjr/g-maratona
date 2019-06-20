@@ -21,7 +21,7 @@ class Image extends Model
      * @var array
      */
     protected $attributes = [
-        'url' => ''
+        // 'url' => ''
     ];
 
     /**

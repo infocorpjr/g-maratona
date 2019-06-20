@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $output = new ConsoleOutput();
-        factory(\App\User::class, rand(11000, 11500))->create()->each(function ($user) use ($output) {
+        factory(\App\User::class, rand(10, 15))->create()->each(function ($user) use ($output) {
             $output->writeln("Seeding Usuário { " . $user->name . " }, um momento ...");
             $user->actor()->saveMany(factory(\App\Models\Actor::class, 1)->make()->each(function ($actor) use ($output) {
                 $output->writeln("Seeding regras de acesso para o usuário ... Um momento ...");

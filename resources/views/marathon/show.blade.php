@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@include('message.store')
+@include('message.destroy')
+
 @section('content')
     <div class="container">
         <h1 class="mt-5 pt-5">{{$marathon->title}}</h1>
