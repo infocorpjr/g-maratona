@@ -10,7 +10,8 @@
                         <form>
                             <div class="input-group bg-dark card-c">
                                 <div class="input-group-text p-0 pr-1 pl-4 bg-transparent">Search</div>
-                                <input class="form-control" type="text" name="q" placeholder="Título ou ano">
+                                <input class="form-control" type="text" name="q" placeholder="Título ou ano"
+                                       value="{{request('q', '')}}">
                                 <div class="input-group-text p-0 bg-transparent">
                                     <button class="btn" type="submit">
                                         <i class="fa fa-search"></i>
@@ -39,12 +40,20 @@
                                         <i class="fa fa-calendar-day"></i> {{$marathon->date->format('d.m.Y H:i:s')}}
                                         ( {{$marathon->date->diffForHumans()}} )
                                     </h4>
-                                    <code>Updated {{$marathon->updated_at->format('d.m.Y H:i:s')}}</code>
+                                    <code>
+                                        #{{$marathon->id}} Updated {{$marathon->updated_at->format('d.m.Y H:i:s')}}
+                                    </code>
                                 </div>
                             </div>
                         </div>
                         <div class="col-auto text-right">
-
+                            <div class="text-right">
+                                <p>Periodo de inscrição</p>
+                                <p>
+                                    Início {{$marathon->starts->diffForHumans()}} <br>
+                                    Fim {{$marathon->ends->diffForHumans()}}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 @empty

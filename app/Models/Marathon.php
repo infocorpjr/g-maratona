@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
 
 class Marathon extends Model
@@ -25,5 +26,35 @@ class Marathon extends Model
     public function getDateAttribute($value)
     {
         return Carbon::parse($value);
+    }
+
+    /**
+     * Get the marathon's starts.
+     *
+     * @param string $value
+     * @return Carbon
+     */
+    public function getStartsAttribute($value)
+    {
+        return Carbon::parse($value);
+    }
+
+    /**
+     * Get the marathon's ends.
+     *
+     * @param string $value
+     * @return Carbon
+     */
+    public function getEndsAttribute($value)
+    {
+        return Carbon::parse($value);
+    }
+
+    /**
+     * Get the marathon's image.
+     */
+    public function images()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 }
