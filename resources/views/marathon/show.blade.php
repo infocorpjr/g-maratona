@@ -3,7 +3,12 @@
 @include('message.store')
 @include('message.destroy')
 
+@push('scripts')
+    <script src="{{ asset('js/dropzone.js') }}"></script>
+@endpush
+
 @section('content')
+    <script src=""></script>
     <div class="container">
         <h1 class="mt-5 pt-5">{{$marathon->title}}</h1>
         <div class="mt-4">
@@ -239,20 +244,24 @@
                 </div>
             </div>
         </div>
-        <div class="card card-b mt-5">
+        <div class="card card-b mt-5 mb-5">
             <div class="card-body">
                 @if($marathon->images)
                     <h3 class="text-uppercase">{{$marathon->images->count()}} Fotos</h3>
                 @endif
-                <form class="mt-2 mb-2" method="post" action="{{route('marathon.image.store', $marathon->id)}}"
+                <form id="dropzone" class="dropzone mt-2 mb-2 " style="height: 200px" method="post"
+                      action="{{route('marathon.image.store', $marathon->id)}}"
                       enctype="multipart/form-data">
                     @csrf
-                    <div class="input-group">
+                    <div class="fallback">
+                        <input name="file" type="file" multiple/>
+                    </div>
+                    {{--<div class="input-group">
                         <input class="form-control" type="file" name="image" required>
                         <div class="input-group-btn">
                             <button class="btn btn-dark">Upload</button>
                         </div>
-                    </div>
+                    </div>--}}
                 </form>
                 <div class="row">
                     @forelse($marathon->images as $image)
