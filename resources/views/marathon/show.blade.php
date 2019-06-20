@@ -241,11 +241,21 @@
                 @if($marathon->images)
                     <h3 class="text-uppercase">{{$marathon->images->count()}} Fotos</h3>
                 @endif
+                <form class="mt-2 mb-2" method="post" action="{{route('marathon.image.store', $marathon->id)}}"
+                      enctype="multipart/form-data">
+                    @csrf
+                    <div class="input-group">
+                        <input class="form-control" type="file" name="image" required>
+                        <div class="input-group-btn">
+                            <button class="btn btn-dark">Upload</button>
+                        </div>
+                    </div>
+                </form>
                 <div class="row">
                     @forelse($marathon->images as $image)
                         <div class="col-12 col-md-4 col-lg-4 col-xl-4">
                             <div class="w-100">
-                                <img class="w-100" src="{{$image->url}}" alt="{{$marathon->title}}"
+                                <img class="w-100" src="{{$image->url}}?w=100" alt="{{$marathon->title}}"
                                      title="{{$marathon->title}}">
                             </div>
                         </div>
