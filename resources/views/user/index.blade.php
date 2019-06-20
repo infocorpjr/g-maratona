@@ -34,7 +34,7 @@
                                 <div class="col">
                                     {{$user->name}} <br>
                                     <small class="">- {{$user->email}}</small> <br>
-                                    <code>Updated {{$user->updated_at->format('d.m.Y H:i:s')}}</code>
+                                    <code>Updated {{$user->updated_at->format('d.m.Y')}}</code>
                                 </div>
                             </div>
                         </div>

@@ -25,5 +25,10 @@ Route::get('/home', 'HomeController@index')
 
 Route::group(["middleware" => ["auth", "verified"]], function () {
     Route::resource('user', 'User\UserController');
-    Route::resource('user.actor', 'User\Actor\ActorController');
+    Route::resource('user.actor', 'User\Actor\ActorController', [
+        'only' => ['update']
+    ]);
+    Route::resource('marathon', 'Marathon\MarathonController', [
+        'only' => ['index']
+    ]);
 });

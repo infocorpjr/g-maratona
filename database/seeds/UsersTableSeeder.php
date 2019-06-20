@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         $output = new ConsoleOutput();
         factory(\App\User::class, rand(1000, 1500))->create()->each(function ($user) use ($output) {
-            $output->writeln("Criando usuário { " . $user->name . " }");
+            $output->writeln("Criando Usuário { " . $user->name . " }");
             $user->actor()->save(factory(\App\Models\Actor::class)->make([
                 'is_administrator' => false,
                 'is_technician' => false,

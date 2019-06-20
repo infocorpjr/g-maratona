@@ -17,7 +17,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-md-3">
-                        <a href="{{route('user.index')}}">
+                        <a href="{{route('marathon.index')}}">
                             <div class="card card-box card-b">
                                 <div class="card-body">
                                     <i class="fa fa-5x fa-laptop-code text-white-50"></i>

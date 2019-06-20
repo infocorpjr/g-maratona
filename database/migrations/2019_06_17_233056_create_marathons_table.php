@@ -14,7 +14,14 @@ class CreateMarathonsTable extends Migration
     public function up()
     {
         Schema::create('marathons', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->string('title');
+            $table->longText('description');
+            $table->timestamp('starts')->nullable()->comment('Início do período de inscrição');
+            $table->timestamp('ends')->nullable()->comment('Fim do período de inscrição');
+            $table->timestamp('date')->nullable()->comment('Data da maratona');
+            $table->smallInteger('team_count')->default(0)->comment('Quantidade de times permitidos por maratona');
+            $table->smallInteger('team_members_count')->default(0)->comment('Quantidade de membros permitidos por time');
             $table->timestamps();
         });
     }
