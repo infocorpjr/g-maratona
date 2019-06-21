@@ -249,6 +249,9 @@
                     <div class="fallback">
                         <input name="image" type="file"/>
                     </div>
+                    <div class="dz-message" data-dz-message>
+                        <i class="fa fa-6x fa-cloud-upload-alt"></i>
+                    </div>
                 </form>
             </div>
         </div>

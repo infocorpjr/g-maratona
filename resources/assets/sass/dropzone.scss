@@ -7,8 +7,6 @@
 }
 
 .dropzone {
-  margin: 15px;
-  border: 5px dashed black;
   position: relative;
 }
 
@@ -229,10 +227,6 @@
 }
 
 .dropzone .dz-preview:hover .dz-image img {
-  -webkit-transform: scale(1.05, 1.05);
-  -moz-transform: scale(1.05, 1.05);
-  -ms-transform: scale(1.05, 1.05);
-  -o-transform: scale(1.05, 1.05);
   transform: scale(1.05, 1.05);
   -webkit-filter: blur(8px);
   filter: blur(8px);
@@ -252,7 +246,7 @@
 }
 
 .dropzone .dz-preview.dz-success .dz-success-mark {
-  animation: passing-through 3s cubic-bezier(0.77, 0, 0.175, 1);
+  animation: passing-through 10s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .dropzone .dz-preview.dz-error .dz-error-mark {
@@ -272,10 +266,13 @@
   margin-top: -27px;
 }
 
-.dropzone .dz-preview .dz-success-mark svg, .dropzone .dz-preview .dz-error-mark svg {
+.dropzone .dz-preview .dz-success-mark svg,
+.dropzone .dz-preview .dz-error-mark svg {
   display: block;
-  width: 54px;
-  height: 54px;
+  margin-left: 20px;
+  margin-top: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .dropzone .dz-preview.dz-processing .dz-progress {
@@ -297,19 +294,19 @@
   z-index: 1000;
   pointer-events: none;
   position: absolute;
-  height: 16px;
+  height: 8px;
   left: 50%;
   top: 50%;
-  margin-top: -8px;
+  margin-top: -4px;
   width: 80px;
   margin-left: -40px;
-  background: rgba(255, 255, 255, 0.9);
+  background: black;
   -webkit-transform: scale(1);
   overflow: hidden;
 }
 
 .dropzone .dz-preview .dz-progress .dz-upload {
-  background: #333;
+  background: black;
   background: linear-gradient(to bottom, #666, #444);
   position: absolute;
   top: 0;
