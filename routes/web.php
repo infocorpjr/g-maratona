@@ -35,3 +35,7 @@ Route::group(["middleware" => ["auth", "verified"]], function () {
         'only' => ['store', 'destroy']
     ]);
 });
+
+// Redimensionamento dinâmico de imagem
+// exemplo.com/resize/<base64dir>&<largura>&<altura>&<imagem.ext>
+Route::get('resize/{parameters}', 'Resize\ResizeController@show');

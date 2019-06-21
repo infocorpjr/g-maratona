@@ -7,8 +7,8 @@
 |        | GET|HEAD  | email/verify                      | verification.notice    | App\Http\Controllers\Auth\VerificationController@show                  | web,auth                     |
 |        | GET|HEAD  | email/verify/{id}                 | verification.verify    | App\Http\Controllers\Auth\VerificationController@verify                | web,auth,signed,throttle:6,1 |
 |        | GET|HEAD  | home                              | home                   | App\Http\Controllers\HomeController@index                              | web,verified,auth            |
-|        | POST      | login                             |                        | App\Http\Controllers\Auth\LoginController@login                        | web,guest                    |
 |        | GET|HEAD  | login                             | login                  | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest                    |
+|        | POST      | login                             |                        | App\Http\Controllers\Auth\LoginController@login                        | web,guest                    |
 |        | POST      | logout                            | logout                 | App\Http\Controllers\Auth\LoginController@logout                       | web                          |
 |        | GET|HEAD  | marathon                          | marathon.index         | App\Http\Controllers\Marathon\MarathonController@index                 | web,auth,verified            |
 |        | GET|HEAD  | marathon/{marathon}               | marathon.show          | App\Http\Controllers\Marathon\MarathonController@show                  | web,auth,verified            |
@@ -20,12 +20,13 @@
 |        | GET|HEAD  | password/reset/{token}            | password.reset         | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest                    |
 |        | POST      | register                          |                        | App\Http\Controllers\Auth\RegisterController@register                  | web,guest                    |
 |        | GET|HEAD  | register                          | register               | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest                    |
-|        | POST      | user                              | user.store             | App\Http\Controllers\User\UserController@store                         | web,auth,verified            |
+|        | GET|HEAD  | resize/{parameters}               |                        | App\Http\Controllers\Resize\ResizeController@show                      | web                          |
 |        | GET|HEAD  | user                              | user.index             | App\Http\Controllers\User\UserController@index                         | web,auth,verified            |
+|        | POST      | user                              | user.store             | App\Http\Controllers\User\UserController@store                         | web,auth,verified            |
 |        | GET|HEAD  | user/create                       | user.create            | App\Http\Controllers\User\UserController@create                        | web,auth,verified            |
-|        | GET|HEAD  | user/{user}                       | user.show              | App\Http\Controllers\User\UserController@show                          | web,auth,verified            |
 |        | PUT|PATCH | user/{user}                       | user.update            | App\Http\Controllers\User\UserController@update                        | web,auth,verified            |
 |        | DELETE    | user/{user}                       | user.destroy           | App\Http\Controllers\User\UserController@destroy                       | web,auth,verified            |
+|        | GET|HEAD  | user/{user}                       | user.show              | App\Http\Controllers\User\UserController@show                          | web,auth,verified            |
 |        | PUT|PATCH | user/{user}/actor/{actor}         | user.actor.update      | App\Http\Controllers\User\Actor\ActorController@update                 | web,auth,verified            |
 |        | GET|HEAD  | user/{user}/edit                  | user.edit              | App\Http\Controllers\User\UserController@edit                          | web,auth,verified            |
 +--------+-----------+-----------------------------------+------------------------+------------------------------------------------------------------------+------------------------------+

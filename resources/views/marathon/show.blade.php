@@ -262,9 +262,11 @@
                 @endif
                 <div class="row mt-5">
                     @forelse($marathon->images as $image)
-                        <div class="col-12 col-md-4 col-lg-4 col-xl-4">
+                        <div class="col-12 col-md-3 col-lg-3 col-xl-3">
                             <div class="w-100">
-                                <img class="w-100" src="{{$image->url}}?w=100" alt="{{$marathon->title}}"
+                                <img class="w-100"
+                                     src="/resize/{{str_replace('/','-',$image->path)}}?w=300&h=300"
+                                     alt="{{$marathon->title}}"
                                      title="{{$marathon->title}}">
                             </div>
                         </div>
