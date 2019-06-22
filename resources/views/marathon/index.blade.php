@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-5">Maratonas</h1>
+        <h1 class="mt-5">Todas as maratonas</h1>
         <div class="card card-c mt-5 mb-4">
             <div class="card-body p-2">
                 <div class="row">
                     <div class="col-4">
                         <form>
                             <div class="input-group bg-dark card-c">
-                                <div class="input-group-text p-0 pr-1 pl-4 bg-transparent">Search</div>
+                                <div class="input-group-text p-0 pr-1 pl-4 bg-transparent ">Search</div>
                                 <input class="form-control" type="text" name="q" placeholder="Título ou ano"
                                        value="{{request('q', '')}}">
                                 <div class="input-group-text p-0 bg-transparent">
@@ -23,6 +23,9 @@
                 </div>
             </div>
         </div>
+
+        @include('marathon.create')
+
         <div class="card card-a mt-5 mb-4">
             <div class="card-body pr-2 pl-2">
                 @forelse ($marathons as $marathon)
@@ -61,7 +64,6 @@
                 @empty
                     <div class="text-center">Que pena... Nenhuma maratona encontrada!</div>
                 @endforelse
-
                 <div class="d-flex justify-content-center">
                     {{ $marathons->links() }}
                 </div>

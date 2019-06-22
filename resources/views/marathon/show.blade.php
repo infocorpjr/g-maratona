@@ -9,7 +9,11 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-5 pt-5">{{$marathon->title}}</h1>
+        <h1 class="mt-5 pt-5">
+            <a class="text-white" href="{{route('marathon.edit', $marathon->id)}}">
+                <i class="fa fa-2x fa-edit"></i> {{$marathon->title}}
+            </a>
+        </h1>
         <div class="mt-4"><h3>Descrição</h3> {{$marathon->description}}</div>
         <div class="card card-a mt-5">
             <div class="card-body">
@@ -265,12 +269,13 @@
                         <div class="col-12 col-md-3 col-lg-3 col-xl-3">
                             <div class="w-100">
                                 <img class="w-100"
-                                     src="/resize/{{str_replace('/','-',$image->path)}}?w=300&h=300"
+                                     src="/resize/{{str_replace('/','-', $image->path)}}?w=300&h=300"
                                      alt="{{$marathon->title}}"
                                      title="{{$marathon->title}}">
                             </div>
                         </div>
                     @empty
+
                     @endforelse
                 </div>
             </div>

@@ -29,7 +29,7 @@ Route::group(["middleware" => ["auth", "verified"]], function () {
         'only' => ['update']
     ]);
     Route::resource('marathon', 'Marathon\MarathonController', [
-        'only' => ['index', 'show']
+        'only' => ['index', 'store', 'show', 'edit', 'update']
     ]);
     Route::resource('marathon.image', 'Marathon\Image\ImageController', [
         'only' => ['store', 'destroy']
