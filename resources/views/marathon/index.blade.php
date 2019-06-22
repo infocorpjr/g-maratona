@@ -33,16 +33,18 @@
                                     <i class="fa fa-4x fa-laptop-code"></i>
                                 </div>
                                 <div class="col">
-                                    <h2 class="m-0">
-                                        <small>{{$marathon->title}}</small> {{$marathon->date->format('Y')}}
-                                    </h2>
-                                    <h4 class="m-0">
-                                        <i class="fa fa-calendar-day"></i> {{$marathon->date->format('d.m.Y H:i:s')}}
-                                        ( {{$marathon->date->diffForHumans()}} )
-                                    </h4>
-                                    <code>
-                                        #{{$marathon->id}} Updated {{$marathon->updated_at->format('d.m.Y H:i:s')}}
-                                    </code>
+                                    <a class="text-white" href="{{route('marathon.show', $marathon->id)}}">
+                                        <h2 class="m-0">
+                                            <small>{{$marathon->title}}</small> {{$marathon->date->format('Y')}}
+                                        </h2>
+                                        <h4 class="m-0">
+                                            <i class="fa fa-calendar-day"></i> {{$marathon->date->format('d.m.Y H:i:s')}}
+                                            ( {{$marathon->date->diffForHumans()}} )
+                                        </h4>
+                                        <code>
+                                            #{{$marathon->id}} Updated {{$marathon->updated_at->format('d.m.Y H:i:s')}}
+                                        </code>
+                                    </a>
                                 </div>
                             </div>
                         </div>
