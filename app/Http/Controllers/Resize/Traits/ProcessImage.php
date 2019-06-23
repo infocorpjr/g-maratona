@@ -18,7 +18,7 @@ trait ProcessImage
      */
     private function storagePath($dirname, $basename, $width, $height)
     {
-        return sprintf('%s/_%d_%d_%s', $dirname, $width, $height, $basename);
+        return sprintf('%s/__%d__%d_%s', $dirname, $width, $height, $basename);
     }
 
     /**
@@ -35,8 +35,9 @@ trait ProcessImage
         $image->fit($width, $height, function ($constraint) {
             $constraint->upsize();
         });
-        // Salva a imagem
-        $path = $this->storagePath($image->dirname, $width, $height, $image->basename);
+
+        $path = $this->storagePath($image->dirname, $image->basename, $width, $height);
+        // Salva a imagem recortada
         $image->save($path);
         // Retorna o nome do arquivo.
         return $image->dirname . '/' . $image->basename;
