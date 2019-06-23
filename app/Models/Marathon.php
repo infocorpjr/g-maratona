@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
 
 class Marathon extends Model
@@ -25,7 +24,7 @@ class Marathon extends Model
      */
     public function setStartsAttribute($value)
     {
-        $this->attributes['starts'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+        $this->attributes['starts'] = Carbon::createFromFormat('d/m/Y H:i:s', $value)
             ->format('Y-m-d H:i:s');
     }
 
@@ -37,7 +36,7 @@ class Marathon extends Model
      */
     public function setEndsAttribute($value)
     {
-        $this->attributes['ends'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+        $this->attributes['ends'] = Carbon::createFromFormat('d/m/Y H:i:s', $value)
             ->format('Y-m-d H:i:s');
     }
 
@@ -49,7 +48,7 @@ class Marathon extends Model
      */
     public function setDateAttribute($value)
     {
-        $this->attributes['date'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+        $this->attributes['date'] = Carbon::createFromFormat('d/m/Y H:i:s', $value)
             ->format('Y-m-d H:i:s');
     }
 
@@ -92,5 +91,29 @@ class Marathon extends Model
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    /**
+     * Get the marathon's teams.
+     */
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
+
+    /**
+     * Get the marathon's technicians.
+     */
+    public function technicians()
+    {
+        return $this->hasMany(Technician::class);
+    }
+
+    /**
+     * Get the marathon's voluntaries.
+     */
+    public function voluntaries()
+    {
+        return $this->hasMany(Voluntary::class);
     }
 }

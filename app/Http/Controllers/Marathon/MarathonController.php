@@ -126,7 +126,7 @@ class MarathonController extends Controller
         // Não permite a remoção se existir imagens
         if ($marathon->images->count()) {
             $request->session()
-                ->flash('deleted_unsuccessful', 'Ops! Você não pode remover antes de remover todas as imagens ...');
+                ->flash('deleted_unsuccessful', 'Ops! Você não pode remover sem antes remover todas as imagens ...');
             return redirect()->back();
         }
 
