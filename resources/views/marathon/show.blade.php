@@ -21,10 +21,10 @@
                     <!-- Participantes -->
                     <div class="col-12 col-md-auto col-lg-auto col-xl-auto">
                         <div class="m-1">
-                            <span class="card-body-number text-white mb-0">50</span>
+                            <span class="card-body-number text-white mb-0">{{$marathon->teams->count()}}</span>
                             <div class="row align-items-center">
                                 <div class="col col-md-auto col-lg-auto col-xl-auto">
-                                    <h4 class="text-left text-white">Participantes<br>cadastrados</h4>
+                                    <h4 class="text-left text-white">Time(s)<br>cadastrado(s)</h4>
                                 </div>
                                 <div class="col-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="80"
@@ -47,10 +47,10 @@
                     <!-- Voluntários -->
                     <div class="col-12 col-md-auto col-lg-auto col-xl-auto">
                         <div class="m-1">
-                            <span class="card-body-number text-white mb-0">7</span>
+                            <span class="card-body-number text-white mb-0">{{$marathon->voluntaries->count()}}</span>
                             <div class="row align-items-center">
                                 <div class="col col-md-auto col-lg-auto col-xl-auto">
-                                    <h4 class="text-left text-white">Voluntários<br>cadastrados</h4>
+                                    <h4 class="text-left text-white">Voluntário(s)<br>cadastrado(s)</h4>
                                 </div>
                                 <div class="col-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="80"
@@ -196,10 +196,10 @@
                     <!-- Técnicos -->
                     <div class="col-12 col-md-auto col-lg-auto col-xl-auto">
                         <div class="m-1">
-                            <span class="card-body-number text-white mb-0">4</span>
+                            <span class="card-body-number text-white mb-0">{{$marathon->technicians->count()}}</span>
                             <div class="row align-items-center">
                                 <div class="col col-md-auto col-lg-auto col-xl-auto">
-                                    <h4 class="text-left text-white">Técnicos<br>cadastrados</h4>
+                                    <h4 class="text-left text-white">Técnico(s)<br>cadastrado(s)</h4>
                                 </div>
                                 <div class="col-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="80"

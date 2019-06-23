@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Marathon;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // Obtém o próximo evento da maratona.
+        // ATENÇÃO! O evento ficará visível até o fim do dia de sua data.
+        $next = Marathon::where('date', '>=', Carbon::now()->format('Y-m-d'))
+            ->orderBy('date')
+            ->first();
+
+        return view('home')->with('next', $next);
     }
 }

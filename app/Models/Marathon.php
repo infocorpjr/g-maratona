@@ -24,8 +24,8 @@ class Marathon extends Model
      */
     public function setStartsAttribute($value)
     {
-        $this->attributes['starts'] = Carbon::createFromFormat('d/m/Y H:i:s', $value)
-            ->format('Y-m-d H:i:s');
+        $this->attributes['starts'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+            ->format('Y-m-d H:i');
     }
 
     /**
@@ -36,8 +36,8 @@ class Marathon extends Model
      */
     public function setEndsAttribute($value)
     {
-        $this->attributes['ends'] = Carbon::createFromFormat('d/m/Y H:i:s', $value)
-            ->format('Y-m-d H:i:s');
+        $this->attributes['ends'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+            ->format('Y-m-d H:i');
     }
 
     /**
@@ -48,8 +48,8 @@ class Marathon extends Model
      */
     public function setDateAttribute($value)
     {
-        $this->attributes['date'] = Carbon::createFromFormat('d/m/Y H:i:s', $value)
-            ->format('Y-m-d H:i:s');
+        $this->attributes['date'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+            ->format('Y-m-d H:i');
     }
 
     /**
