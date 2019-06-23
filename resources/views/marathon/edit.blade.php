@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <div class="card card-b mt-5">
+        <div class="card card-b mt-5 mb-5">
             <div class="card-body p-1">
                 <div class="row">
                     <div class="col-auto">
@@ -15,9 +15,11 @@
             </div>
         </div>
 
+        @include('message.update')
+        @include('message.destroy')
+
         <div class="card card-b mt-5">
             <h3 class="p-3">Editando {{$marathon->title}}</h3>
-            @include('message.update')
             <div class="card-body p-3">
                 <form class="m-0" method="post" action="{{route('marathon.update', $marathon->id)}}">
                     @csrf @method('put')
@@ -27,7 +29,7 @@
                                placeholder="Ex: Maratona de programação {{date('Y')}}">
                     </div>
                     @if ($errors->has('title'))
-                        <span class="text-danger">{{ $errors->first('title') }}</span>
+                        <p class="text-danger blink-1">{{ $errors->first('title') }}</p>
                     @endif
                     <div class="row">
                         <div class="col-12 col-md-8 col-lg-8 col-xl-8 pl-0">Período de inscrição</div>
@@ -41,7 +43,7 @@
                                        placeholder="00/00/0000 00:00">
                             </div>
                             @if ($errors->has('starts'))
-                                <span class="text-danger">{{ $errors->first('starts') }}</span>
+                                <p class="text-danger mt-3 blink-1">{{ $errors->first('starts') }}</p>
                             @endif
                         </div>
                         <div class="col-12 col-md-4 col-lg-4 col-xl-4 pl-0 pl-md-1 pl-xl-1 pl-xl-1 pr-0 pr-md-1 pr-lg-1 pr-xl-1">
@@ -52,7 +54,7 @@
                                        placeholder="00/00/0000 00:00">
                             </div>
                             @if ($errors->has('ends'))
-                                <span class="text-danger">{{ $errors->first('ends') }}</span>
+                                <p class="text-danger mt-3 blink-1">{{ $errors->first('ends') }}</p>
                             @endif
                         </div>
                         <div class="col-12 col-md-4 col-lg-4 col-xl-4 pl-0 pl-md-1 pl-xl-1 pl-xl-1 pr-0 pr-md-1 pr-lg-1 pr-xl-1">
@@ -63,7 +65,7 @@
                                        placeholder="00/00/0000 00:00">
                             </div>
                             @if ($errors->has('date'))
-                                <span class="text-danger">{{ $errors->first('date') }}</span>
+                                <p class="text-danger mt-3 blink-1">{{ $errors->first('date') }}</p>
                             @endif
                         </div>
                     </div>
@@ -78,7 +80,7 @@
                         </div>
                     </div>
                     @if ($errors->has('description'))
-                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                        <p class="text-danger blink-1">{{ $errors->first('description') }}</p>
                     @endif
                 </form>
             </div>
@@ -94,13 +96,14 @@
                         </button>
                     </div>
                     <div class="col-auto">
-                        <button id="cancel" class="btn" style="display: none;"
+                        <button id="cancel" class="btn btn-outline-light vibrate-3" style="display: none;"
                                 onclick="document.getElementById('confirm').style.display='none';this.style.display='none';">
                             Não!
                         </button>
                     </div>
                     <div class="col-auto">
-                        <button id="confirm" class="btn btn-outline-warning" style="display: none;"
+                        <button id="confirm" class="btn btn-outline-warning vibrate-3"
+                                style="display: none;animation-delay: 100ms"
                                 onclick="document.getElementById('delete').submit();">
                             Sim, tenho certeza!
                         </button>

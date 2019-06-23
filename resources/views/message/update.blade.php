@@ -1,6 +1,24 @@
 @if(session()->has('updated_successful'))
-    <p class="animated fadeInDown text-green text-center">{{session()->get('updated_successful')}}</p>
+    <div class="alert alert-success fade-in-bck" role="alert">
+        <div class="row">
+            <div class="col-auto m-0">
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="col text-center font-weight-bold">
+                {{session()->get('updated_successful')}}
+            </div>
+        </div>
+    </div>
 @endif
 @if(session()->has('updated_unsuccessful'))
-    <p class="animated fadeInDown text-red text-center">{{session()->get('updated_unsuccessful')}}</p>
+    <div class="alert alert-danger fade-in-bck" role="alert">
+        <div class="row">
+            <div class="col-auto m-0">
+                <i class="fa fa-bug"></i>
+            </div>
+            <div class="col text-center  font-weight-bold">
+                {{session()->get('updated_unsuccessful')}}
+            </div>
+        </div>
+    </div>
 @endif
