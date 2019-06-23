@@ -30,16 +30,6 @@ class MarathonController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
@@ -47,7 +37,23 @@ class MarathonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'title' => 'required|string|min:1|max:100',
+            'starts' => 'required|date_format:"d/m/Y H:i"|before_or_equal:ends',
+            'ends' => 'required|date_format:"d/m/Y H:i"|before_or_equal:date',
+            'date' => 'required|date_format:"d/m/Y H:i"',
+            'description' => 'required|string'
+        ];
+        $this->validate($request, $rules);
+        $marathon = new Marathon($request->all());
+        if ($marathon->save()) {
+            $request->session()->flash('created_successful', 'O recurso foi criado com sucesso');
+            // Sucesso! Redireciona para a página de visualização do álbum.
+            return redirect()->route('marathon.show', $marathon->id);
+        }
+        $request->session()->flash('created_unsuccessful', 'Não foi possível salvar o recurso');
+        // Fracasso! Redireciona de volta.
+        return redirect()->back();
     }
 
     /**
@@ -68,34 +74,68 @@ class MarathonController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param int $marathonIdentification
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($marathonIdentification)
     {
-        //
+        $marathon = Marathon::findOrFail($marathonIdentification);
+        return view('marathon.edit')->with('marathon', $marathon);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int $marathonIdentification
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $marathonIdentification)
     {
-        //
+        $rules = [
+            'title' => 'required|string|min:1|max:100',
+            'starts' => 'required|date_format:"d/m/Y H:i"|before_or_equal:ends',
+            'ends' => 'required|date_format:"d/m/Y H:i"|before_or_equal:date',
+            'date' => 'required|date_format:"d/m/Y H:i"',
+            'description' => 'required|string'
+        ];
+        $this->validate($request, $rules);
+        $marathon = Marathon::findOrFail($marathonIdentification);
+        if ($marathon->update($request->all())) {
+            $request->session()->flash('updated_successful', 'O recurso foi atualizado com sucesso');
+            // Sucesso! Redireciona para a página de visualização do álbum.
+            return redirect()->back();
+        }
+        $request->session()->flash('updated_unsuccessful', 'Não foi possível atualizar o recurso');
+        // Fracasso! Redireciona de volta.
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $marathonIdentification
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $marathonIdentification)
     {
-        //
+        $marathon = Marathon::findOrFail($marathonIdentification);
+        // Atenção! A maratona não pode ser removida se existir imagens, staff e times.
+
+        // Não permite a remoção se existir imagens
+        if ($marathon->images->count()) {
+            return redirect()->back()->withErrors([
+                'Esta maratona não pode ser removida porque possui imagens ...'
+            ]);
+        }
+
+        if ($marathon->delete()) {
+            $request->session()->flash('deleted_successful', 'O recurso foi removido');
+            return redirect()->route('marathon.index');
+        }
+        $request->session()->flash('deleted_unsuccessful', 'Não foi possível remover o recurso');
+        return redirect()->route('marathon.index');
+
     }
 }

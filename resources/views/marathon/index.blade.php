@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h1 class="mt-5">Todas as maratonas</h1>
+        @include('marathon.create')
         <div class="card card-c mt-5 mb-4">
             <div class="card-body p-2">
                 <div class="row">
@@ -23,9 +24,6 @@
                 </div>
             </div>
         </div>
-
-        @include('marathon.create')
-
         <div class="card card-a mt-5 mb-4">
             <div class="card-body pr-2 pl-2">
                 @forelse ($marathons as $marathon)

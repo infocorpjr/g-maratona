@@ -18,10 +18,46 @@ class Marathon extends Model
     ];
 
     /**
+     * Set the matathon's starts.
+     *
+     * @param $value
+     * @return void
+     */
+    public function setStartsAttribute($value)
+    {
+        $this->attributes['starts'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+            ->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Set the matathon's ends.
+     *
+     * @param $value
+     * @return void
+     */
+    public function setEndsAttribute($value)
+    {
+        $this->attributes['ends'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+            ->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * Set the matathon's date.
+     *
+     * @param $value
+     * @return void
+     */
+    public function setDateAttribute($value)
+    {
+        $this->attributes['date'] = Carbon::createFromFormat('d/m/Y H:i', $value)
+            ->format('Y-m-d H:i:s');
+    }
+
+    /**
      * Get the marathon's date.
      *
      * @param string $value
-     * @return int
+     * @return Carbon
      */
     public function getDateAttribute($value)
     {

@@ -1,8 +1,5 @@
 @extends('layouts.app')
 
-@include('message.store')
-@include('message.destroy')
-
 @push('scripts')
     <script src="{{ asset('js/dropzone.js') }}"></script>
 @endpush
