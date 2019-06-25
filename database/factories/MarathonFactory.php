@@ -12,18 +12,18 @@ $factory->define(\App\Models\Marathon::class, function (Faker $faker) {
 
     // Data falsa do inicio do período de inscrição, sendo
     // 60 dias anteriores a data da maratona ...
-    $starts = Carbon::createFromFormat('d/m/Y H:i:s', $date->format('d/m/Y H:i:s'))->subDays(60);
+    $starts = Carbon::createFromFormat('d/m/Y H:i', $date->format('d/m/Y H:i'))->subDays(60);
 
     // Data falsa do fim do período de inscrição, sendo
     // 5 dias antes da data da maratona
-    $ends = Carbon::createFromFormat('d/m/Y H:i:s', $date->format('d/m/Y H:i:s'))->subDays(1);
+    $ends = Carbon::createFromFormat('d/m/Y H:i', $date->format('d/m/Y H:i'))->subDays(1);
 
     return [
         'title' => $faker->city,
         'description' => $faker->text,
-        'starts' => $starts->format('d/m/Y H:i:s'),
-        'ends' => $ends->format('d/m/Y H:i:s'),
-        'date' => $date->format('d/m/Y H:i:s'),
+        'starts' => $starts->format('d/m/Y H:i'),
+        'ends' => $ends->format('d/m/Y H:i'),
+        'date' => $date->format('d/m/Y H:i'),
         'team_count' => rand(1, 10),
         'team_members_count' => rand(1, 3)
     ];
