@@ -27,7 +27,12 @@ class ActorController extends Controller
         // The current user can or can't ...
         // $this->authorize('update', $actor);
         // OPÇÕES PARA ATOR
-        $field = ['is_administrator' => false, 'is_technician' => false, 'is_voluntary' => false, 'is_participant' => false];
+        $field = [
+            'is_administrator' => false,
+            'is_technician' => false,
+            'is_voluntary' => false,
+            'is_participant' => false
+        ];
         if ($request->has('actor')) {
             // Verifica se o valor do campo existe entre as chaves do vetor.
             if (array_key_exists($request->get('actor', ''), $field)) {

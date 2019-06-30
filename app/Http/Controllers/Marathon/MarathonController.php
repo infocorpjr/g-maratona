@@ -136,6 +136,5 @@ class MarathonController extends Controller
         }
         $request->session()->flash('deleted_unsuccessful', 'Não foi possível remover o recurso');
         return redirect()->route('marathon.index');
-
     }
 }
