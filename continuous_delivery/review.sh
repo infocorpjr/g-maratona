@@ -42,8 +42,8 @@ if [ -d /var/www/$DOMAIN ]; then
     composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
 
     # NPM
-    if [ -d node_modules ]; then sudo rm node_modules -R; fi
-    npm ci && npm run prod
+    # if [ -d node_modules ]; then sudo rm node_modules -R; fi
+    # npm ci && npm run prod
 
     # BANCO DE DADOS & STORAGE
     if [ -f database/database.sqlite ]; then
@@ -54,6 +54,7 @@ if [ -d /var/www/$DOMAIN ]; then
 
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link
+    php artisan queue:restart
     sudo chown www-data:www-data ./ -R
     curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
     exit
@@ -91,13 +92,14 @@ if [ ! -d /var/www/$DOMAIN ]; then
     composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
 
     # NPM
-    npm ci && npm run prod
+    # npm ci && npm run prod
 
     # BANCO DE DADOS & STORAGE
     touch database/database.sqlite && php artisan migrate --seed
 
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link
+    php artisan queue:restart
     sudo chown www-data:www-data storage -R
     curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
     exit
