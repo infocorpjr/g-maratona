@@ -2,65 +2,14 @@
 
 namespace App\Http\Controllers\User\Actor;
 
+use App\User;
 use App\Models\Actor;
+use App\Notifications\ActorUpdate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ActorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -72,7 +21,7 @@ class ActorController extends Controller
     public function update(Request $request, $userIdentification, $actorIdentification)
     {
         // Procura pelo recurso no banco de dados.
-        // $user = User::findOrFail($userIdentification);
+        $user = User::findOrFail($userIdentification);
         // Procura pelo recurso no banco de dados.
         $actor = Actor::findOrFail($actorIdentification);
         // The current user can or can't ...
@@ -88,7 +37,10 @@ class ActorController extends Controller
             }
         }
         // Atualiza o modelo no banco de dados.
-        if ($actor->update($field)) {
+        if ($user->id === $actor->id && $actor->update($field)) {
+            // Notifica o usuário por email da mudança de nível ...
+            $user->notify((new ActorUpdate(''))->delay(now()->addSecond(1)));
+
             $request->session()->flash('updated_successful', "As informações do usuário foram atualizadas");
             // Sucesso! Redireciona de volta.
             return redirect()->back();
@@ -96,16 +48,5 @@ class ActorController extends Controller
         $request->session()->flash('updated_unsuccessful', 'Não foi possível atualizar as informações do usuário');
         // Fracasso! Redireciona de volta.
         return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
