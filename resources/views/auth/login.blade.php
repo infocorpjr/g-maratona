@@ -36,7 +36,7 @@
         </svg>
         <div class="card">
             <div class="card-body p-0 p-md-5 p-lg-5 p-xl-5">
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" autocomplete="off">
                     @csrf
                     <b>login() {</b>
                     <div class="form-group row align-items-center mb-0 ml-4">
@@ -92,11 +92,9 @@
                     <div class="form-group row mb-0">
                         <div class="col"></div>
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-link">
-                                Login
-                            </button>
+                            <button type="submit" class="btn btn-link text-white">Login</button>
                             @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <a class="btn btn-link text-white" href="{{ route('password.request') }}">
                                     /* Esqueceu sua senha ? */
                                 </a>
                             @endif
@@ -107,7 +105,7 @@
                         <div class="col"></div>
                         <div class="col-auto">
                             @if (Route::has('register'))
-                                <a class="btn btn-link" href="{{ route('register') }}">
+                                <a class="btn btn-link text-white" href="{{ route('register') }}">
                                     /* Quero me registrar ... */
                                 </a>
                             @endif

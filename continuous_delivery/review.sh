@@ -27,7 +27,7 @@ MESSAGE="
 "
 
 # Verifica se o diretório do projeto já está disponivel no servidor de revisão
-# Atenção, as configurações de subdomínio devem estar configurado no servidor.
+# Atenção, as configurações de subdomínio devem estar prontas no servidor de DNS.
 if [ -d /var/www/$DOMAIN ]; then
     cd /var/www/$DOMAIN
     sudo chown $USER:$USER ./ -R

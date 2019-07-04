@@ -110,11 +110,9 @@
                     <div class="form-group row mb-0">
                         <div class="col"></div>
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-link">
-                                Registrar
-                            </button>
+                            <button type="submit" class="btn btn-link text-white">Registrar</button>
                             @if (Route::has('login'))
-                                <a class="btn btn-link" href="{{ route('login') }}">
+                                <a class="btn btn-link text-white" href="{{ route('login') }}">
                                     /* Já possui conta? */
                                 </a>
                             @endif
