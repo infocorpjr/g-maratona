@@ -6,7 +6,7 @@
             <div class="container">
                 <h1 class="pl-2">Seja bem vindo!<br>{{ Auth::user()->name }}</h1>
                 <div class="row">
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
                         <a href="{{route('user.index')}}">
                             <div class="card card-box card-a">
                                 <div class="card-body">
@@ -16,7 +16,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
                         <a href="{{route('marathon.index')}}">
                             <div class="card card-box card-b">
                                 <div class="card-body">
@@ -26,7 +26,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
                         <a href="{{route('user.index')}}">
                             <div class="card card-box card-c">
                                 <div class="card-body">
@@ -36,10 +36,15 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-md-2">
-                        <div class="card card-box card-b">
-                            <div class="card-body"></div>
-                        </div>
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <a href="{{route('team.index')}}">
+                            <div class="card card-box card-b">
+                                <div class="card-body">
+                                    <i class="fa fa-5x fa-users text-white-50"></i>
+                                    <h5 class="text-center text-white">Meus times</h5>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                     <div class="col-12 col-md-8"></div>
                     <div class="col-auto"></div>

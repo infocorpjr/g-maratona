@@ -15,8 +15,25 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('marathon_id')->unsigned()->comment("Chave estrangeira para maratona");
-            $table->foreign('marathon_id')->references('id')->on('marathons')->onDelete('cascade');
+
+            $table->integer('user_id')
+                ->unsigned()
+                ->nullable()
+                ->comment("Chave estrangeira para usuário");
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null');
+
+            $table->integer('marathon_id')
+                ->unsigned()
+                ->nullable()
+                ->comment("Chave estrangeira para maratona");
+            $table->foreign('marathon_id')
+                ->references('id')
+                ->on('marathons')
+                ->onDelete('set null');
+
             $table->string('name');
             $table->text('description');
             $table->boolean('validated')->default(false);

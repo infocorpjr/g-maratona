@@ -14,8 +14,6 @@ try {
 } catch (e) {
 }
 
-require('./jquery.mask');
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -56,16 +54,3 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-$('.date_time').mask('00/00/0000 00:00',
-    {
-        translation: {
-            'Z': {
-                pattern: /[0-9]/,
-            }
-        },
-        placeholder: "00/00/0000 00:00",
-        onComplete: function (value) {
-            console.log(new Date(value));
-        },
-    });

@@ -20,7 +20,7 @@ class ImageController extends Controller
     {
         $this->validate($request, ['image' => 'required|image']);
         // Salva o arquivo no disco ...
-        $path = $request->file('image')->store('images/marathon', 'public');
+        $path = $request->file('image')->store('images/marathon', 'sftp');
         //
         $marathon = Marathon::findOrFail($marathonIdentification);
         // Salva o caminho da imagem no banco no banco de dados ...

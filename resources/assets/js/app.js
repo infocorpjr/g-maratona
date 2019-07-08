@@ -32,3 +32,18 @@ const app = new Vue({
     el: '#app',
 });
  */
+
+require('./jquery.mask');
+
+$('.date_time').mask('00/00/0000 00:00',
+    {
+        translation: {
+            'Z': {
+                pattern: /[0-9]/,
+            }
+        },
+        placeholder: "00/00/0000 00:00",
+        onComplete: function (value) {
+            console.log(new Date(value));
+        },
+    });
