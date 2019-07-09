@@ -6,13 +6,6 @@
         <div class="card card-b mt-5 mb-4">
             <div class="card-body p-2">
                 <div class="row justify-content-between">
-                    <div class="col-auto">
-                        <button class="btn btn-outline-primary" type="button" data-toggle="collapse"
-                                data-target="#collapse"
-                                aria-expanded="false" aria-controls="collapse">
-                            <i class="fa fa-plus-circle"></i> Time
-                        </button>
-                    </div>
                     <div class="col-5">
                         <form method="get">
                             <div class="input-group bg-dark card-c">
@@ -25,6 +18,13 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapse"
+                                aria-expanded="false" aria-controls="collapse">
+                            <i class="fa fa-2x fa-plus-circle"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -53,21 +53,23 @@
             <div class="row">
                 @forelse($teams as $team)
                     <div class="col-12 col-md-4 col-lg-4 col-xl-4 p-1">
-                        <div class="card card-c">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-                                        <i class="fa fa-3x fa-users"></i>
-                                    </div>
-                                    <div class="col">
-                                        {{$team->name}}
-                                    </div>
-                                    <div class="col-12 pt-0 pb-0">
-                                        <small>Criado em {{$team->created_at->format('d.m.Y')}}</small>
+                        <a href="{{route('team.show', $team->id)}}">
+                            <div class="card card-c">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <i class="fa fa-3x fa-users"></i>
+                                        </div>
+                                        <div class="col text-white">{{$team->name}}</div>
+                                        <div class="col-12 pt-0 pb-0">
+                                            <small class="text-white">
+                                                Criado em {{$team->created_at->format('d.m.Y')}}
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @empty
                     <div class="col-12">
@@ -78,6 +80,11 @@
                         @endif
                     </div>
                 @endforelse
+
+                <div class="d-flex justify-content-center">
+                    {{ $teams->links() }}
+                </div>
+
             </div>
         </div>
 

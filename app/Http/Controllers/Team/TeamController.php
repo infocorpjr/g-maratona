@@ -18,10 +18,10 @@ class TeamController extends Controller
     {
         if (request('q', false)) {
             // Faz uma busca pelos times do usuário.
-            $teams = Auth::user()->teams()->where('name', request('q'))->get();
+            $teams = Auth::user()->teams()->where('name', request('q'))->paginate();
         } else {
             // Obtém somente os times do usuário.
-            $teams = Auth::user()->teams()->get();
+            $teams = Auth::user()->teams()->paginate();
         }
 
         return view('team.index')->with('teams', $teams);
@@ -65,30 +65,35 @@ class TeamController extends Controller
      */
     public function show($teamIdentification)
     {
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $team = Team::findOrFail($teamIdentification);
+        return view('team.show')->with('team', $team);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param int $id
+     * @param int $teamIdentification
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $teamIdentification)
     {
-        //
+        $rules = [
+            'name' => 'required|string|min:1|max:100',
+            'description' => 'required|string'
+        ];
+        $this->validate($request, $rules);
+
+        $team = Team::findOrFail($teamIdentification);
+
+        if ($team->update($request->except(['user_id', 'marathon_id', 'validated']))) {
+            $request->session()->flash('updated_successful', 'O recurso foi atualizado com sucesso');
+            // Sucesso! Redireciona para a página de visualização do álbum.
+            return redirect()->route('team.show', $team->id);
+        }
+        $request->session()->flash('updated_unsuccessful', 'Não foi possível atualizar o recurso');
+        // Fracasso! Redireciona de volta.
+        return redirect()->back();
     }
 
     /**
