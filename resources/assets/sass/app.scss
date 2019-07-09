@@ -62,7 +62,6 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
-
 // Dropzone
 @import "dropzone";
 
@@ -70,6 +69,19 @@ html,
 body,
 main {
   height: 100%;
+}
+
+body {
+  &:before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent url("../svg/971.svg") no-repeat 90% 90%;
+    background-size: 40%;
+    content: '';
+    position: fixed;
+  }
 }
 
 code {

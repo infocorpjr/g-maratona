@@ -1,4 +1,4 @@
-image: infocorpjr/nepes
+image: infocorpjr/laravel
 
 stages:
   - build

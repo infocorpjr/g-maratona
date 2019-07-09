@@ -14286,6 +14286,17 @@ main {
   height: 100%;
 }
 
+body:before {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent url(/images/971.svg?b2f863b90e13c650b22a576a17322cae) no-repeat 90% 90%;
+  background-size: 40%;
+  content: "";
+  position: fixed;
+}
+
 code {
   font-size: 9px;
 }
