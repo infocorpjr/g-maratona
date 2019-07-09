@@ -17,13 +17,12 @@ class TeamController extends Controller
     public function index()
     {
         if (request('q', false)) {
-            // Faz uma busca pelos times do usuário.
+            // Faz uma busca pelos times do usuário.git a
             $teams = Auth::user()->teams()->where('name', request('q'))->paginate();
         } else {
             // Obtém somente os times do usuário.
             $teams = Auth::user()->teams()->paginate();
         }
-
         return view('team.index')->with('teams', $teams);
     }
 
