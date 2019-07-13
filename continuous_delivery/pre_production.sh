@@ -4,13 +4,13 @@
     Este arquivo contém os scripts para clonar ou atualizar a aplicação do repositório do Gitlab para no servidor.
     Atenção! É necessário que as chaves SSH estejam devidamente configuradas entre (GITLAB - SERVER) (GITLAB CI - SERVER).
     O servidor DNS deve estar devidamente configurado para redirecionar qualquer subdomínio para o domínio principal
-    Domínio http://review3.infocorpjr.com
+    Domínio http://review5.infocorpjr.com
 '
 
-PROJECT="3 - NEPES"
-DOMAIN="nepes.infocorpjr.com"
-GIT_BRANCH="pre_production "
-GIT_REMOTE_SSH="git@gitlab.com:infocorp/nepes.git"
+PROJECT="G - MARATONA"
+DOMAIN="review5.infocorpjr.com"
+GIT_BRANCH="master"
+GIT_REMOTE_SSH="git@gitlab.com:infocorp/g-maratona.git"
 SLACK_WEBHOOK=$SLACK_WEBHOOK
 MESSAGE="
 {
