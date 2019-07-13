@@ -11,7 +11,7 @@ PROJECT="3 - NEPES"
 DOMAIN="nepes.infocorpjr.com"
 GIT_BRANCH="pre_production "
 GIT_REMOTE_SSH="git@gitlab.com:infocorp/nepes.git"
-SLACK_WEBHOOK="https://hooks.slack.com/services/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"
+SLACK_WEBHOOK=$SLACK_WEBHOOK
 MESSAGE="
 {
     \"attachments\": [
