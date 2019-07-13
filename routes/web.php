@@ -30,11 +30,16 @@ Route::group(["middleware" => ["auth", "verified"]], function () {
     ]);
     Route::resource('marathon', 'Marathon\MarathonController', [
         // 'only' => ['index', 'store', 'show', 'edit', 'update', 'destroy']
-        'except' => 'create'
+        'except' => ['create']
     ]);
     Route::resource('marathon.image', 'Marathon\Image\ImageController', [
         'only' => ['store', 'destroy']
     ]);
+    Route::resource('marathon.team', 'Marathon\Team\TeamController', [
+        // 'only' => ['index', 'store', 'show', 'edit', 'update', 'destroy']
+        'except' => []
+    ]);
+    Route::resource('team', 'Team\TeamController');
 });
 
 // Redimensionamento dinâmico de imagem

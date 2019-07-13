@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Actor;
+use App\Models\Team;
 use App\Notifications\VerifyEmailQueued;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -58,5 +59,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function actor()
     {
         return $this->hasOne(Actor::class);
+    }
+
+    /**
+     * Obtém os times pertencente a este usuário.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
     }
 }

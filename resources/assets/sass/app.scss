@@ -15,7 +15,7 @@
 //@import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
-//@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/transitions";
 @import "~bootstrap/scss/dropdown";
 //@import "~bootstrap/scss/button-group";
 @import "~bootstrap/scss/input-group";
@@ -31,7 +31,7 @@
 //@import "~bootstrap/scss/progress";
 //@import "~bootstrap/scss/media";
 //@import "~bootstrap/scss/list-group";
-//@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/close";
 //@import "~bootstrap/scss/toasts";
 //@import "~bootstrap/scss/modal";
 //@import "~bootstrap/scss/tooltip";
@@ -62,7 +62,6 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
-
 // Dropzone
 @import "dropzone";
 
@@ -72,6 +71,19 @@ main {
   height: 100%;
 }
 
+body {
+  &:before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent url("../svg/971.svg") no-repeat 90% 90%;
+    background-size: 40%;
+    content: '';
+    position: fixed;
+  }
+}
+
 code {
   font-size: 9px;
 }
@@ -79,7 +91,7 @@ code {
 .navbar-laravel {
   padding-top: 1.5%;
   padding-bottom: 1.5%;
-  background: url("../svg/m.svg") no-repeat center center;
+  background: url("../svg/971.svg") no-repeat center center;
   background-size: cover;
   border-bottom: 1px solid #444;
 }
