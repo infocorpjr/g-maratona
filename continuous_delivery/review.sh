@@ -6,7 +6,7 @@
     O servidor DNS deve estar devidamente configurado para redirecionar qualquer subdomínio para o domínio principal
     Domínio http://review5.infocorpjr.com
 '
-
+SLACK_WEBHOOK_HOMOLOG= $1
 PROJECT="G - MARATONA"
 DOMAIN="review5.infocorpjr.com"
 GIT_BRANCH="master"
