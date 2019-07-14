@@ -21,6 +21,7 @@ class CreateParticipantsTable extends Migration
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->string('name')->comment('Nome do time');
             $table->text('description')->comment('Descrição do time');
+            $table->boolean('validated')->default(false);
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class Technician extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'marathon_id'
+        'user_id', 'marathon_id', 'validated'
     ];
 
     /**
@@ -21,9 +21,7 @@ class Technician extends Model
      *
      * @var array
      */
-    protected $hidden = [
-
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast to native types.
