@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Participant extends Model
@@ -12,7 +13,7 @@ class Participant extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'team_id'
+        'user_id', 'team_id', 'validated'
     ];
 
     /**
@@ -20,9 +21,7 @@ class Participant extends Model
      *
      * @var array
      */
-    protected $hidden = [
-
-    ];
+    protected $hidden = [];
 
     /**
      * The attributes that should be cast to native types.

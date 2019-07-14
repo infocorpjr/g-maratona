@@ -58,6 +58,7 @@ database:
 phpunit:
   stage: test
   script:
+    - touch database/database.sqlite
     - vendor/bin/phpunit --coverage-text --colors=never
 
 # DESATIVADO!

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\User;
-use App\Models\Marathon;
 use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
@@ -15,6 +14,16 @@ class Team extends Model
      */
     protected $fillable = [
         'user_id', 'marathon_id', 'name', 'description', 'validated'
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'integer',
+        'marathon_id' => 'integer'
     ];
 
     /**
@@ -35,5 +44,15 @@ class Team extends Model
     public function marathon()
     {
         return $this->belongsTo(Marathon::class);
+    }
+
+    /**
+     * Obtém os participantes pertencentes a este time
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function participants()
+    {
+        return $this->hasMany(Participant::class);
     }
 }
