@@ -6,7 +6,7 @@
     O servidor DNS deve estar devidamente configurado para redirecionar qualquer subdomínio para o domínio principal
     Domínio http://review5.infocorpjr.com
 '
-SLACK_WEBHOOK_HOMOLOG= $1
+
 PROJECT="G - MARATONA"
 DOMAIN="review5.infocorpjr.com"
 GIT_BRANCH="master"
@@ -55,7 +55,7 @@ if [ -d /var/www/$DOMAIN ]; then
     php artisan key:generate && php artisan storage:link
     php artisan queue:restart
     sudo chown www-data:www-data ./ -R
-    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK_HOMOLOG
+    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
     exit
 fi
 
@@ -100,6 +100,6 @@ if [ ! -d /var/www/$DOMAIN ]; then
     php artisan key:generate && php artisan storage:link
     php artisan queue:restart
     sudo chown www-data:www-data storage -R
-    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" "$SLACK_WEBHOOK_HOMOLOG"
+    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" "$SLACK_WEBHOOK"
     exit
 fi
