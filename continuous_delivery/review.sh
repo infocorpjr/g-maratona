@@ -11,6 +11,7 @@ PROJECT="G - MARATONA"
 DOMAIN="review5.infocorpjr.com"
 GIT_BRANCH="master"
 GIT_REMOTE_SSH="git@gitlab.com:infocorp/g-maratona.git"
+SLACK_WEBHOOK="ADICIONAR HOOK"
 MESSAGE="
 {
     \"attachments\": [
