@@ -104,14 +104,3 @@ deploy_pre_production:
     url: http://maratona.infocorpjr.com
   only:
     - pre_production
-
-deploy_production:
-  stage: deploy
-  script:
-    - echo "A aplicação está indo para produção!"
-  environment:
-    name: production
-    url: https://example.com
-  when: manual
-  only:
-    - master
