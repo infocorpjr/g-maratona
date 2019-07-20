@@ -6,16 +6,18 @@
             <div class="container">
                 <h1 class="pl-2">Seja bem vindo!<br>{{ Auth::user()->name }}</h1>
                 <div class="row">
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <a href="{{route('user.index')}}">
-                            <div class="card card-box card-a">
-                                <div class="card-body">
-                                    <i class="fa fa-5x fa-user-friends text-white-50"></i>
-                                    <h5 class="text-center text-white">Usuário</h5>
+                    @can('index', \App\User::class)
+                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                            <a href="{{route('user.index')}}">
+                                <div class="card card-box card-a">
+                                    <div class="card-body">
+                                        <i class="fa fa-5x fa-user-friends text-white-50"></i>
+                                        <h5 class="text-center text-white">Usuário</h5>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    @endcan
                     <div class="col-12 col-md-6 col-lg-3 col-xl-3">
                         <a href="{{route('marathon.index')}}">
                             <div class="card card-box card-b">

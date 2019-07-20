@@ -33,68 +33,71 @@
                                 </div>
                                 <div class="col">
                                     {{$user->name}} <br>
-                                    <small class="">- {{$user->email}}</small> <br>
+                                    <small class="">- {{$user->email}}</small>
+                                    <br>
                                     <code>Updated {{$user->updated_at->format('d.m.Y')}}</code>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto text-right">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-dark dropdown-toggle"
-                                        data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    @if($user->actor)
-                                        @if($user->actor->is_administrator)
-                                            Administrador
-                                        @elseif($user->actor->is_technician)
-                                            Técnico
-                                        @elseif($user->actor->is_voluntary)
-                                            Voluntário
-                                        @elseif($user->actor->is_participant)
-                                            Participante
+                        @can('update', $user->actor)
+                            <div class="col-auto text-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-dark dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        @if($user->actor)
+                                            @if($user->actor->is_administrator)
+                                                Administrador
+                                            @elseif($user->actor->is_technician)
+                                                Técnico
+                                            @elseif($user->actor->is_voluntary)
+                                                Voluntário
+                                            @elseif($user->actor->is_participant)
+                                                Participante
+                                            @else
+                                                Não classificado
+                                            @endif
                                         @else
                                             Não classificado
                                         @endif
-                                    @else
-                                        Não classificado
-                                    @endif
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    @if($user->actor)
-                                        <form method="post"
-                                              action="{{route('user.actor.update', [$user->id, $user->actor->id])}}">
-                                            @csrf
-                                            {{method_field('put')}}
-                                            @if(!$user->actor->is_administrator)
-                                                <button class="dropdown-item" type="submit" name="actor"
-                                                        value="is_administrator">
-                                                    Administrador
-                                                </button>
-                                            @endif
-                                            @if(!$user->actor->is_technician)
-                                                <button class="dropdown-item" type="submit" name="actor"
-                                                        value="is_technician">
-                                                    Técnico
-                                                </button>
-                                            @endif
-                                            @if(!$user->actor->is_voluntary)
-                                                <button class="dropdown-item" type="submit" name="actor"
-                                                        value="is_voluntary">
-                                                    Voluntário
-                                                </button>
-                                            @endif
-                                            @if(!$user->actor->is_participant)
-                                                <button class="dropdown-item" type="submit" name="actor"
-                                                        value="is_participant">
-                                                    Participante
-                                                </button>
-                                            @endif
-                                        </form>
-                                    @endif
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        @if($user->actor)
+                                            <form method="post"
+                                                  action="{{route('user.actor.update', [$user->id, $user->actor->id])}}">
+                                                @csrf
+                                                {{method_field('put')}}
+                                                @if(!$user->actor->is_administrator)
+                                                    <button class="dropdown-item" type="submit" name="actor"
+                                                            value="is_administrator">
+                                                        Administrador
+                                                    </button>
+                                                @endif
+                                                @if(!$user->actor->is_technician)
+                                                    <button class="dropdown-item" type="submit" name="actor"
+                                                            value="is_technician">
+                                                        Técnico
+                                                    </button>
+                                                @endif
+                                                @if(!$user->actor->is_voluntary)
+                                                    <button class="dropdown-item" type="submit" name="actor"
+                                                            value="is_voluntary">
+                                                        Voluntário
+                                                    </button>
+                                                @endif
+                                                @if(!$user->actor->is_participant)
+                                                    <button class="dropdown-item" type="submit" name="actor"
+                                                            value="is_participant">
+                                                        Participante
+                                                    </button>
+                                                @endif
+                                            </form>
+                                        @endif
+                                    </div>
                                 </div>
+                                <code>Updated {{$user->actor->updated_at->format('d.m.Y H:i:s')}}</code>
                             </div>
-                            <code>Updated {{$user->actor->updated_at->format('d.m.Y H:i:s')}}</code>
-                        </div>
+                        @endcan
                     </div>
                 @empty
                     <div class="text-center">Que pena... Nenhum usuário encontrado!</div>

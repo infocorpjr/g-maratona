@@ -15,6 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        // Verifica se a ação é autorizada ...
+        $this->authorize('index', User::class);
+
         if (request('q', false)) {
             $search = request('q');
             $users = User::where('name', 'like', '%' . $search . '%')

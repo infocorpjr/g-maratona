@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Team;
 
+use App\Models\Marathon;
 use App\Models\Team;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -64,8 +66,15 @@ class TeamController extends Controller
      */
     public function show($teamIdentification)
     {
-        $team = Team::findOrFail($teamIdentification);
-        return view('team.show')->with('team', $team);
+        $team = Team::with('participants')->findOrFail($teamIdentification);
+        // Pesquisa por maratonas com período de inscrição aberto ...
+        $marathons = Marathon::where('starts', '<', now())
+            ->where('ends', '>', now())
+            ->get();
+
+        return view('team.show')
+            ->with('team', $team)
+            ->with('marathons', $marathons);
     }
 
     /**
@@ -98,10 +107,11 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param int $marathonIdentification
+     * @param int $teamIdentification
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($marathonIdentification, $teamIdentification)
     {
         //
     }

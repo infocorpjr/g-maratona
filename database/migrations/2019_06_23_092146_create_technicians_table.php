@@ -19,6 +19,7 @@ class CreateTechniciansTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('marathon_id')->unsigned()->comment("Chave estrangeira para maratona");
             $table->foreign('marathon_id')->references('id')->on('marathons')->onDelete('cascade');
+            $table->boolean('validated')->default(false);
             $table->timestamps();
         });
     }

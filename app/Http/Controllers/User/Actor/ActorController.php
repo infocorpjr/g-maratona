@@ -25,7 +25,7 @@ class ActorController extends Controller
         // Procura pelo recurso no banco de dados.
         $actor = Actor::findOrFail($actorIdentification);
         // The current user can or can't ...
-        // $this->authorize('update', $actor);
+        $this->authorize('update', $actor);
         // OPÇÕES PARA ATOR
         $field = [
             'is_administrator' => false,

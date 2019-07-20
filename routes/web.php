@@ -25,21 +25,13 @@ Route::get('/home', 'HomeController@index')
 
 Route::group(["middleware" => ["auth", "verified"]], function () {
     Route::resource('user', 'User\UserController');
-    Route::resource('user.actor', 'User\Actor\ActorController', [
-        'only' => ['update']
-    ]);
-    Route::resource('marathon', 'Marathon\MarathonController', [
-        // 'only' => ['index', 'store', 'show', 'edit', 'update', 'destroy']
-        'except' => ['create']
-    ]);
-    Route::resource('marathon.image', 'Marathon\Image\ImageController', [
-        'only' => ['store', 'destroy']
-    ]);
-    Route::resource('marathon.team', 'Marathon\Team\TeamController', [
-        // 'only' => ['index', 'store', 'show', 'edit', 'update', 'destroy']
-        'except' => []
-    ]);
+    Route::resource('user.actor', 'User\Actor\ActorController', ['only' => ['update']]);
     Route::resource('team', 'Team\TeamController');
+
+    // Route::resource('user/profile', 'User\Profile\ProfileController', ['except' => ['']]);
+    Route::resource('marathon', 'Marathon\MarathonController', ['except' => ['create']]);
+    Route::resource('marathon.image', 'Marathon\Image\ImageController', ['only' => ['store', 'destroy']]);
+    Route::resource('marathon.team', 'Marathon\Team\TeamController', ['only' => ['store', 'destroy']]);
 });
 
 // Redimensionamento dinâmico de imagem
