@@ -83,25 +83,29 @@ phpunit:
   chmod 700 ~/.ssh
   ssh-keyscan "$SSH_KNOWN_HOSTS" >> ~/.ssh/known_hosts
   chmod 644 ~/.ssh/known_hosts
+  ssh -T suporte@"$SSH_KNOWN_HOSTS"
+
+## Faz a configuração do servidor apache
+
+.apache2: &apache2 |
+  sudo echo "
+  <VirtualHost *:80>
+  ServerAdmin suporte@infocorp.ic.ufmt.br
+  ServerName review5.infocorpjr.com
+  ServerAlias www.review5.infocorpjr.com
+  DocumentRoot /var/www/review5.infocorpjr.com/public
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+  <Directory /var/www/review5.infocorpjr.com/public>Allowoverride All</Directory>
+  </VirtualHost>" | sudo tee /etc/apache2/sites-available/$DOMAIN.conf
 
 deploy_review:
   stage: deploy
   script:
     - *init_ssh
-    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < ./continuous_delivery/review.sh
+    - *apache2
   environment:
     name: review
     url: http://review5.infocorpjr.com
   only:
     - master
-
-deploy_pre_production:
-  stage: deploy
-  script:
-    - *init_ssh
-    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < ./continuous_delivery/pre_production.sh
-  environment:
-    name: pre_production
-    url: http://maratona.infocorpjr.com
-  only:
-    - pre_production
