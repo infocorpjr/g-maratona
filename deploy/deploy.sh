@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 
+echo SLACK_WEBHOOK
+
 : '
     Deploy to HOMOLOG
 '
 
-echo $0 $1
-
 DOMAIN="review5.infocorpjr.com"
 GIT_REMOTE_SSH="git@gitlab.com:infocorp/g-maratona.git"
-SLACK_WEBHOOK="ADICIONAR HOOK"
 
 MESSAGE="
 {

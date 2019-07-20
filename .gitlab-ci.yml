@@ -77,7 +77,7 @@ phpunit:
 ################################################################################
 
 .init_ssh: &init_ssh |
-  eval $(ssh-agent   -s)
+  eval $(ssh-agent -s)
   echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
   mkdir -p ~/.ssh
   chmod 700 ~/.ssh
@@ -88,7 +88,11 @@ deploy_review:
   stage: deploy
   script:
     - *init_ssh
-    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/deploy.sh one two
+    # Adiciona os valores das variáveis de ambiente em um arquivo ...
+    - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK " | tee deploy/vars.sh
+    # Junta o arquivo de variáveis e o arquivo de para build da aplicação ...
+    - cat deploy/vars.sh deploy/deploy.sh > deploy/deploy.sh
+    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/deploy.sh
   environment:
     name: review
     url: http://review5.infocorpjr.com
