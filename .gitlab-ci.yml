@@ -91,8 +91,8 @@ deploy_review:
     # Adiciona os valores das variáveis de ambiente em um arquivo ...
     - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK " | tee deploy/vars.sh
     # Junta o arquivo de variáveis e o arquivo de para build da aplicação ...
-    - cat deploy/vars.sh deploy/deploy.sh > deploy/deploy.sh
-    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/deploy.sh
+    - cat deploy/vars.sh deploy/deploy.sh > deploy/preview.sh
+    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/preview.sh
   environment:
     name: review
     url: http://review5.infocorpjr.com
