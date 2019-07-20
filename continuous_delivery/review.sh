@@ -11,7 +11,7 @@ PROJECT="G - MARATONA"
 DOMAIN="review5.infocorpjr.com"
 GIT_BRANCH="master"
 GIT_REMOTE_SSH="git@gitlab.com:infocorp/g-maratona.git"
-SLACK_WEBHOOK=$SLACK_WEBHOOK_HOMOLOG
+SLACK_WEBHOOK="ADICIONAR HOOK"
 MESSAGE="
 {
     \"attachments\": [
@@ -56,7 +56,7 @@ if [ -d /var/www/$DOMAIN ]; then
     php artisan key:generate && php artisan storage:link
     php artisan queue:restart
     sudo chown www-data:www-data ./ -R
-    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" $SLACK_WEBHOOK
+    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" "$SLACK_WEBHOOK"
     exit
 fi
 
