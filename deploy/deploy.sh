@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
-echo SLACK_WEBHOOK
-
-: '
-    Deploy to HOMOLOG
-'
-
+# O subdomínio para o projeto, sem o 'wwww', esse subdomínio também
+# será o nome do projeto dentro do '/var/www'
 DOMAIN="review5.infocorpjr.com"
+# O endereço do repositório
 GIT_REMOTE_SSH="git@gitlab.com:infocorp/g-maratona.git"
 
+# A mensagem que será enviada para o slack, veja mais detalhes de formatação em:
+# https://api.slack.com/docs/message-formatting
 MESSAGE="
 {
     \"attachments\": [
         {
-            \"pretext\": \"Olá! Tem algo novo do projeto *Maratona de Programação*\",
+            \"pretext\": \" *Maratona de Programação* está no servidor de homologação \",
             \"color\": \"#36a64f\",
             \"title\": \"http://$DOMAIN\",
             \"title_link\": \"http://$DOMAIN\",
@@ -22,11 +21,8 @@ MESSAGE="
     ]
 }
 "
-
 # Remove o diretório da aplicação
 sudo rm /var/www/$DOMAIN -R
-
-# Se o diretório não existe ...
 if [ ! -d /var/www/$DOMAIN ]; then
     # CONFIGURAÇÕES DE SUBDOMÍNIO NO APACHE
     sudo echo "
@@ -41,10 +37,8 @@ if [ ! -d /var/www/$DOMAIN ]; then
             Allowoverride All
         </Directory>
     </VirtualHost>" | sudo tee /etc/apache2/sites-available/$DOMAIN.conf
-    # Faz a ativação do site
-    sudo a2ensite $DOMAIN
-    # Reinicia o servidor para carregar as configurações
-    sudo /etc/init.d/apache2 restart
+    # Faz a ativação do site e reinicia o servidor
+    sudo a2ensite $DOMAIN && sudo /etc/init.d/apache2 restart
     # Muda para o dirtório padrão dos projetos no servidor
     cd /var/www/
     # Neste caso o sudo permite a execução sem senha
@@ -57,8 +51,6 @@ if [ ! -d /var/www/$DOMAIN ]; then
     cp .env.deploy .env
     # COMPOSER
     composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
-    # NPM
-    # npm ci && npm run prod
     # BANCO DE DADOS & STORAGE
     touch database/database.sqlite && php artisan migrate --seed
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
