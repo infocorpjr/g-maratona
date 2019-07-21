@@ -40,10 +40,8 @@ if [ ! -d /var/www/$DOMAIN ]; then
     sudo a2ensite $DOMAIN && sudo /etc/init.d/apache2 restart
     # Muda para o dirtório padrão dos projetos no servidor
     cd /var/www/
-    # Neste caso o sudo permite a execução sem senha
-    sudo mkdir $DOMAIN && cd $DOMAIN
-    # Altera o proprietário do diretório
-    sudo chown $USER:$USER . -R
+    # Cria o diretório do projeto, mudara para o diretório e altera as permissões de pripriedade ...
+    sudo mkdir $DOMAIN && cd $DOMAIN && sudo chown $USER:$USER . -R
     # Clona o repositório da aplicação
     git clone -b master $GIT_REMOTE_SSH .
     # VARIÁVEIS DE AMBIENTE
@@ -54,7 +52,11 @@ if [ ! -d /var/www/$DOMAIN ]; then
     touch database/database.sqlite && php artisan migrate --seed
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link && php artisan queue:restart
+    # Adiciona a senha do email para o arquivo de configurações
+    php artisan env:set $MAIL_USERNAME
+    # Altera o proprietário do diretório
     sudo chown www-data:www-data storage -R
+    # Notificação do slack
     curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" "$SLACK_WEBHOOK"
     exit
 fi
