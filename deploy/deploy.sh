@@ -5,7 +5,6 @@
 DOMAIN="review5.infocorpjr.com"
 # O endereço do repositório
 GIT_REMOTE_SSH="git@gitlab.com:infocorp/g-maratona.git"
-
 # A mensagem que será enviada para o slack, veja mais detalhes de formatação em:
 # https://api.slack.com/docs/message-formatting
 MESSAGE="
