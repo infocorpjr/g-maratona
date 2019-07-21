@@ -53,7 +53,7 @@ if [ ! -d /var/www/$DOMAIN ]; then
     # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
     php artisan key:generate && php artisan storage:link && php artisan queue:restart
     # Adiciona a senha do email para o arquivo de configurações
-    php artisan env:set $MAIL_USERNAME
+    php artisan env:set MAIL_USERNAME=$MAIL_USERNAME
     # Altera o proprietário do diretório
     sudo chown www-data:www-data storage -R
     # Notificação do slack
