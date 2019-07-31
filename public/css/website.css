@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+body {
+    margin: 0;
+	font-family: 'Nunito', sans-serif;
+}
+
+/* Estilos Gerais */
+.container {
+    margin-left: 70px;
+    margin-right: 70px;
+}
