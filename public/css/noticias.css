@@ -1,6 +1,5 @@
-
 /* Estilos da box */
-.box {
+/*.box {
     display: flex;
     width: 100%;
     flex-flow: column;
@@ -43,7 +42,7 @@
 }
 .box-content-subtitle {
     margin-top: 3em;
-}
+}*/
 
 /* Estilos do conteúdo */
 .content {
@@ -64,20 +63,4 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-}
-.row {
-    display: flex;
-    flex-wrap: wrap;
-}
-.retangules {
-    display: flex;
-    justify-content: center;
-    width: 345px;
-    height: 355px;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-.news-card {
-    height: 300px;
-    color: white;
 }

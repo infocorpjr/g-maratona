@@ -1,0 +1,315 @@
+* {
+    font-family: 'Nunito', sans-serif;
+}
+body{
+    margin: 0;
+}
+.Corpo{
+    width: 100%;
+    height: 3090px;
+}
+.Topo{
+    width: 100%;
+    height: 500px;
+    background-color: black;
+    color: white;
+}
+.LogoTopo{
+    width: 100%;
+    height: 82px; 
+}
+.TopoEsq{
+    float: left;
+    margin-left: 116px;
+    margin-top: 22px;
+}
+.TopoDir{
+    float: right;
+}
+.Botao{
+    margin-right: 115.33px;
+    margin-top: 37px;
+    border: 1px solid white;
+    width: 110px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-family: Lato, Arial;
+}
+.Botao a{
+    text-decoration: none;
+    color: white;
+}
+.TextoTopo{
+    width: 100%;
+    height: 258px;
+    margin-top: 78px;
+}
+.TextoEsq{
+    width: 50%;
+    height: 258px;
+    float: left;
+}
+.TextoEvento{
+    width: 100%;
+    max-width: 455px;
+    height: 258px;
+    margin-left:213px;
+    float: left;
+
+}
+.NomeEvento{
+    width: 358px;
+    height: 117px;
+    text-align: left;
+    font-size: 48px;
+    font-weight: bold;
+}
+.DataEvento{
+    margin-top: 40px;
+    width: 100%;
+    height: 101px;
+    text-align: left;
+    font-size: 20px;
+}
+.TextoDir{
+    float: right;
+    width: 50%;
+    height: 258px;;
+}
+.MenuTopo{
+
+    float: right;
+    width: 68px;
+    height: 128px;
+    margin-right: 115.33px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.MenuEsq{
+    width: 44px;
+    height: 128px;
+    float: left;
+    background-color:black;
+}
+.MenuEsq a{
+    text-decoration: none;
+    color: white;
+}
+.MenuDir{
+    margin-top: 2px;
+    width: 14px;
+    height: 128px;
+    float: right;  
+}
+.MenuDir img{
+    padding-bottom: 20px;
+
+}
+.MenuTopo img{
+    float: right;
+}
+.Inscrever{
+    margin-top: 57px;
+    margin-left: 795px;
+    border-radius: 25px; 
+    width: 261px;
+    height: 50px;
+    background-color: #0037FF;
+    text-align: center;
+    line-height: 50px;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2);
+}
+.Inscrever a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+
+}
+.Conteudo{
+    width: 100%;
+    height: 1417px;
+}
+.TextoConteudo{
+    width: 100%;
+    height: 473px;
+}
+.LoremConteudo{
+    width: 100%;
+    max-width: 843px;
+    height: 393px;
+    font-size: 20px;
+    color: #707070;
+    margin: auto; 
+    margin-top:105px;
+    text-align: left;
+}
+.Texto2Conteudo{
+    width: 100%;
+    height: 520px;
+}
+.TextoConteudoEsq{
+    width: 50%;
+    height: 409.46px;
+    float: left;
+}
+.TextoConteudoDir{
+    width: 50%;
+    height: 409.46px;
+    float: right;
+}
+.TextoConteudoDirTexto{
+    width: 100%;
+    max-width: 455px;
+    height: 211px;
+    margin-left: 15px;
+    margin-top: 53px;
+}
+.Cor{
+    width: 261px;
+    max-width: 261px;
+    height: 39px;
+    padding-top: 33px;
+}
+.CorAzul{
+    width: 100%;
+    max-width: 169px;
+    height: 33px;
+    margin-left: 25px;
+    background-color: #0037FF;
+}
+.TituloConteudoDir{
+    width: 100%;
+    max-width: 261px;
+    height: 72px;
+    color: #242B33;
+    font-size: 30px;
+    text-align: left;
+    font-weight: bold;
+    position: absolute;
+}
+.NomeLocalConteudoDir{
+    width: 100%;
+    height: 78px;
+    margin-top: 61px;
+    color: #242B33;
+    text-align: left;
+    font-size: 20px;
+}
+.Patrocinadores{
+    width: 100%;
+    height: 110px;
+    padding-top: 14px; 
+}
+.CorLaranja{
+    width: 236px;
+    height: 30px;
+    background-color: #FFBF00;
+    margin-left: 237.99px;
+    margin-top: 14px;
+}
+.PatrocinadoresTitulo{
+    width: 261px;
+    height: 34px;
+    margin-left: 213px;
+    font-size: 34px;
+    font-weight: bold;
+    text-align: left;
+    color: #242B33;
+    position: absolute;
+}
+.PatrocinadoresBanners{
+    width: 100%;
+    height: 300px; 
+}
+.Banners{
+    width: 649.14px;
+    max-width: 649.14px;
+    height: 145.01px;
+    margin-left: 213px;
+}
+.SBC{
+    width: 97.01px;
+    height: 145.01px;
+    float: left;
+}
+.Agenda{
+    margin-top: 16px;
+    margin-left: 66.99px;
+    width: 260.65px;
+    height: 112.75px;
+    float: left;
+}
+.Icpc{
+    margin-top: 34px;
+    margin-left: 60.35px; 
+    width: 164.14;
+    height: 76.76;
+    float: left;
+}
+.Vaga{
+    width: 100%;
+    height: 300px;
+    background-color: #0037FF;
+}
+.VagaEsq{
+    width: 50%;
+    height: 300px;
+    float: left; 
+}
+.VagaEsqTudo{
+    width: 358px;
+    height: 130px;
+    margin-left: 213px;
+    margin-top: 58px;
+    padding-top: 51px; 
+}
+.ColorAzulEscuro{
+    margin-left: 70px;
+    width: 288px;
+    height: 130px;
+    background-color: #242B33;
+}
+.VagaEsqTexto{
+    padding-left: 213px;
+    margin-top: 58px;
+    width: 291px;
+    height: 164px;
+    position: absolute;
+    font-size: 48px;
+    text-align: left;
+    font-weight: bold;
+    color: white;
+}
+.VagaDir{
+    float: right;
+    width: 50%;
+    height: 300px;
+}
+.VagaDirBotao{
+    width: 358px;
+    height: 68.58px;
+    background-color: white;
+    font-size: 26px;
+    text-align: center;
+    line-height: 68.58px;
+    margin-top: 114px;
+    float: right;
+    margin-right: 310px;
+    border-radius: 34.29px;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.2);  
+    font-weight: bold;
+}
+.aa{
+    text-decoration: none;
+    font-weight: bold;
+    color: #0037FF;
+}
+.Footer{
+    width: 100%;
+    height: 768px;
+    background-color: #191919;
+    border: 1px solid #707070;
+}

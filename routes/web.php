@@ -40,3 +40,6 @@ Route::get('resize/{parameters}', 'Resize\ResizeController@show');
 
 Route::get('/noticias', 'NewsController@index')
     ->name('noticias');
+
+Route::get('/eventos', 'EventsController@index')
+    ->name('eventos');

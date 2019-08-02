@@ -10,3 +10,50 @@ body {
     margin-left: 70px;
     margin-right: 70px;
 }
+
+/* Estilos da box */
+.box {
+    display: flex;
+    width: 100%;
+    flex-flow: column;
+	background-color: black;
+    color: white;
+}
+.box-top {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    margin-top: 12px;
+    margin-left: 45px;
+}
+.box-top-home {
+    margin-top: 10px;
+}
+.box-top-login {
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 15px;
+    line-height: 30px;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    margin-top: 25px;
+}
+.box-top-login a {
+    text-decoration: none;
+    color: white;
+}
+.box-content {
+    display: flex;
+    justify-content: center;
+    padding-top: 3em;
+    padding-bottom: 7em;
+}
+.box-content-details {
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.box-content-subtitle {
+    margin-top: 3em;
+}

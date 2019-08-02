@@ -56,7 +56,9 @@
         </div>
         <div class="container content-news-image">
             <div class="container">
-                <img class="image-news" src="images/image-news.jpg">
+                <div class="image-content">
+                    <img class="image-news" src="images/image-news.jpg">
+                </div>
             </div>
         </div>
         <div class="container content-news">
@@ -65,40 +67,11 @@
                 </p>
             </div>
             <div class="container news-paragraph">
-                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
             </div>
         </div>
     </div>
-    <div class="container content-galery">
-        <div class="container">
-            <div class="container galery-news">
-                <div class="row">
-                    <div class="retangules">
-                        <div class="more-news">
-                            <p>Leia + Noticias</p>
-                        </div>
-                    </div>
-                    <div class="retangules">
-                        <div class="news-card" style="background-color: black">
-                            <div class="news-card-date">23.06.2018</div>
-                            <div class="nws-card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</div>
-                        </div>
-                    </div>
-                    <div class="retangules">
-                        <div class="news-card" style="background-color: black">
-                            <div class="news-card-date">23.06.2018</div>
-                            <div class="nws-card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</div>
-                        </div>
-                    </div>
-                    <div class="retangules">
-                        <div class="news-card" style="background-color: black">
-                            <div class="news-card-date">23.06.2018</div>
-                            <div class="nws-card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="more-news">
+        <!--  -->
     </div>
 @endsection
