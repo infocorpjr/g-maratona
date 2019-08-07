@@ -1,18 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
-
-body {
-    margin: 0;
-	font-family: 'Nunito', sans-serif;
-}
-
-/* Estilos Gerais */
-.container {
-    margin-left: 70px;
-    margin-right: 70px;
-}
-
 /* Estilos da box */
-.box {
+/*.box {
     display: flex;
     width: 100%;
     flex-flow: column;
@@ -23,8 +10,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: auto;
-    margin-top: 12px;
-    margin-left: 45px;
+    margin-top: 0.5em;
 }
 .box-top-home {
     margin-top: 10px;
@@ -56,4 +42,25 @@ body {
 }
 .box-content-subtitle {
     margin-top: 3em;
+}*/
+
+/* Estilos do conteúdo */
+.content {
+    margin-top: 6em;
+    margin-bottom: 6em;
+    color: #707070;
+}
+.content-news-image {
+    text-align: center;
+}
+.image-news { 
+    margin-top: 4em;
+    margin-bottom: 4em;
+    width: 500px;
+    height: 300px;;
+}
+.galery-news {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

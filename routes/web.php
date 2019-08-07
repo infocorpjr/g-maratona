@@ -37,3 +37,9 @@ Route::group(["middleware" => ["auth", "verified"]], function () {
 // Redimensionamento dinâmico de imagem
 // exemplo.com/resize/<base64dir>&<largura>&<altura>&<imagem.ext>
 Route::get('resize/{parameters}', 'Resize\ResizeController@show');
+
+Route::get('/noticias', 'NewsController@index')
+    ->name('noticias');
+
+Route::get('/eventos', 'EventsController@index')
+    ->name('eventos');
