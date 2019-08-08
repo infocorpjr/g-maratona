@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
-@includeWhen($errors->any(), 'message.errors')
-
 @section('content')
+    @includeWhen($errors->any(), 'message.errors')
     <div class="container mb-5">
         <div class="card card-a mt-5">
             <div class="card-body">
@@ -34,16 +33,18 @@
                                 @endif
                             </div>
                             <div class="col-auto p-0">
-                                <form method="post"
-                                      action="{{route('marathon.team.destroy', [$team->marathon->id, $team->id])}}">
-                                    @csrf()
-                                    @method('delete')
-                                    <input type="hidden" name="team_id" value="{{$team->id}}">
+                                @if($team->marathon_id)
+                                    <form method="post"
+                                          action="{{route('marathon.team.destroy', [$team->marathon->id, $team->id])}}">
+                                        @csrf()
+                                        @method('delete')
+                                        <input type="hidden" name="team_id" value="{{$team->id}}">
 
-                                    <button class="btn btn-warning text-uppercase">
-                                        Desfazer inscrição
-                                    </button>
-                                </form>
+                                        <button class="btn btn-warning text-uppercase">
+                                            Desfazer inscrição
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -42,11 +42,12 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param \Illuminate\Http\Request $request
      * @param int $marathonIdentification
      * @param int $teamIdentification
      * @return \Illuminate\Http\Response
      */
-    public function destroy($marathonIdentification, $teamIdentification)
+    public function destroy(Request $request, $marathonIdentification, $teamIdentification)
     {
         // Obtém informações sobre a maratona.
         $marathon = Marathon::findOrFail($marathonIdentification);
@@ -54,12 +55,18 @@ class TeamController extends Controller
         $team = Team::findOrFail($teamIdentification);
 
         // Se o time já foi validado, não pode ser desfeita a matrícula ...
-        if (!$team->validated) {
+        if ($team->validated) {
             return redirect()->back()->withErrors([
-                'apoksdapoksdposak'
+                'Seu time já foi validado, e não pode ser removido'
             ]);
         }
 
-        dd($marathon, $team);
+        // Remove o id da maratona da coluna de relacionamento
+        if ($team->update(["marathon_id" => null])) {
+            $request->session()->flash('created_successful', 'A matrícula foi realizada com sucesso');
+            return redirect()->back();
+        }
+        $request->session()->flash('created_unsuccessful', 'Não foi possível realizar a matrícula');
+        return redirect()->back();
     }
 }
