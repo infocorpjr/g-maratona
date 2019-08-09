@@ -17,7 +17,6 @@
                                 </div>
                             </a>
                         </div>
-                    @endcan
                     <div class="col-12 col-md-6 col-lg-3 col-xl-3">
                         <a href="{{route('marathon.index')}}">
                             <div class="card card-box card-b">
@@ -38,6 +37,7 @@
                             </div>
                         </a>
                     </div>
+                    @endcan
                     <div class="col-12 col-md-6 col-lg-3 col-xl-3">
                         <a href="{{route('team.index')}}">
                             <div class="card card-box card-b">

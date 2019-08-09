@@ -36,7 +36,7 @@
                                 <div class="col">
                                     <a class="text-white" href="{{route('marathon.show', $marathon->id)}}">
                                         <h2 class="m-0">
-                                            <small>{{$marathon->title}}</small> {{$marathon->date->format('Y')}}
+                                            <small>{{$marathon->title}}</small> - {{$marathon->date->format('Y')}}
                                         </h2>
                                         <h4 class="m-0">
                                             <i class="fa fa-calendar-day"></i> {{$marathon->date->format('d.m.Y H:i:s')}}
