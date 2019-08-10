@@ -17,26 +17,26 @@
                                 </div>
                             </a>
                         </div>
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <a href="{{route('marathon.index')}}">
-                            <div class="card card-box card-b">
-                                <div class="card-body">
-                                    <i class="fa fa-5x fa-laptop-code text-white-50"></i>
-                                    <h5 class="text-center text-white">Maratona</h5>
+                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                            <a href="{{route('marathon.index')}}">
+                                <div class="card card-box card-b">
+                                    <div class="card-body">
+                                        <i class="fa fa-5x fa-laptop-code text-white-50"></i>
+                                        <h5 class="text-center text-white">Maratona</h5>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <a href="{{route('user.index')}}">
-                            <div class="card card-box card-c">
-                                <div class="card-body">
-                                    <i class="fa fa-5x fa-file-invoice text-white-50"></i>
-                                    <h5 class="text-center text-white">Artigo</h5>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                            <a href="{{route('user.index')}}">
+                                <div class="card card-box card-c">
+                                    <div class="card-body">
+                                        <i class="fa fa-5x fa-file-invoice text-white-50"></i>
+                                        <h5 class="text-center text-white">Artigo</h5>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
                     @endcan
                     <div class="col-12 col-md-6 col-lg-3 col-xl-3">
                         <a href="{{route('team.index')}}">
@@ -44,6 +44,16 @@
                                 <div class="card-body">
                                     <i class="fa fa-5x fa-users text-white-50"></i>
                                     <h5 class="text-center text-white">Meus times</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <a href="{{route('role.index')}}">
+                            <div class="card card-box card-b text-center">
+                                <div class="card-body">
+                                    <i class="fa fa-5x fa-user-circle text-white-50"></i>
+                                    <h5 class="text-center text-white">Configurações</h5>
                                 </div>
                             </div>
                         </a>
