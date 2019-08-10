@@ -35,6 +35,18 @@ const app = new Vue({
 
 require('./jquery.mask');
 
+$('.date_date').mask('00-00-0000',
+    {
+        translation: {
+            'Z': {
+                pattern: /[0-9]/,
+            }
+        },
+        onComplete: function (value) {
+            console.log(new Date(value));
+        },
+    });
+
 $('.date_time').mask('00/00/0000 00:00',
     {
         translation: {
@@ -45,5 +57,14 @@ $('.date_time').mask('00/00/0000 00:00',
         placeholder: "00/00/0000 00:00",
         onComplete: function (value) {
             console.log(new Date(value));
+        },
+    });
+
+$('.rga_format').mask('000000000000',
+    {
+        translation: {
+            'Z': {
+                pattern: /[0-9]/,
+            }
         },
     });
