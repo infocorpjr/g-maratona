@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-
         <div class="pt-3">
             <div class="row">
                 @forelse($teams as $team)
@@ -62,13 +61,10 @@
                         @endif
                     </div>
                 @endforelse
-
                 <div class="d-flex justify-content-center">
                     {{ $teams->links() }}
                 </div>
-
             </div>
         </div>
-
     </div>
 @endsection

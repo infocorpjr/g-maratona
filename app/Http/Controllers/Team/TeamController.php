@@ -65,6 +65,18 @@ class TeamController extends Controller
      */
     public function show($teamIdentification)
     {
+        $user = Auth::user();
+
+        // Verifica se o usuario pode vizualizar
+        $aux = $user->teams()->where([
+            ['user_id','=',Auth::id()],
+            ['id','=',$teamIdentification]
+        ])->get()->count();
+
+        if ($aux == 0){
+            abort(403);
+        }
+
         $team = Team::with('participants')->findOrFail($teamIdentification);
         // Pesquisa por maratonas com período de inscrição aberto ...
         $marathons = Marathon::where('starts', '<', now())

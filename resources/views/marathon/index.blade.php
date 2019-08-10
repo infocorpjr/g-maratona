@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-5">Todas as maratonas</h1>
+        <div class="mt-5 row">
+            <div class="col-6">
+                <h1>Todas as maratonas</h1>
+            </div>
+            <div class="col-6 text-right">
+                <a href="{{route("home")}}" class="btn btn-dark subtitle">Voltar</a>
+            </div>
+        </div>
         @include('marathon.create')
         <div class="card card-c mt-5 mb-4">
             <div class="card-body p-2">
@@ -36,7 +43,7 @@
                                 <div class="col">
                                     <a class="text-white" href="{{route('marathon.show', $marathon->id)}}">
                                         <h2 class="m-0">
-                                            <small>{{$marathon->title}}</small> {{$marathon->date->format('Y')}}
+                                            <small>{{$marathon->title}}</small> - {{$marathon->date->format('Y')}}
                                         </h2>
                                         <h4 class="m-0">
                                             <i class="fa fa-calendar-day"></i> {{$marathon->date->format('d.m.Y H:i:s')}}
