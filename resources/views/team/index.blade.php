@@ -7,7 +7,7 @@
                 <h1>Meus times</h1>
             </div>
             <div class="col-6 text-right">
-                <a href="{{route("home")}}" class="btn btn-dark" style="font-size: 1.5rem">Voltar</a>
+                <a href="{{route("home")}}" class="btn btn-dark subtitle">Voltar</a>
             </div>
         </div>
         <div class="card card-b mt-5 mb-4">

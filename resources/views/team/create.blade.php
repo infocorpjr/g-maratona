@@ -14,7 +14,7 @@
         <div class="input-group-text bg-dark">Descrição</div>
         <textarea class="form-control" name="description" placeholder="">{{old('description')}}</textarea>
         <div class="input-group-text bg-dark">
-            <button class="btn btn-primary text-uppercase font-weight-bold" type="submit">Salvar</button>
+            <button class="btn btn-primary text-uppercase font-weight-bold" type="submit">Criar Time</button>
         </div>
     </div>
     @if ($errors->has('description'))

@@ -20,7 +20,15 @@
                         </button>
                     </div>
                     <div class="col-12">
-                        {{$team->description}}
+                        <div class="row">
+                            <div class="col-6">{{$team->description}}</div>
+                            <div class="col-6 text-right">
+                                {{-- TODO: Adicionar Participantes --}}
+                                <button class="btn btn-dark">
+                                    Adicionar Participantes
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-12">
                         <div class="row align-items-center justify-content-between">
