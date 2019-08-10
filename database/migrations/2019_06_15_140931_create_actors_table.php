@@ -23,6 +23,9 @@ class CreateActorsTable extends Migration
             $table->boolean('is_technician')->default(false)->comment('Determina se o ator é técnico');
             $table->boolean('is_voluntary')->default(false)->comment('Determina se o ator é voluntário');
             $table->boolean('is_participant')->default(true)->comment('Determina se o ator é participante');
+
+            $table->boolean('status')->default(false)->comment("Status se já foi aprovado na role");
+
             $table->timestamps();
         });
     }
