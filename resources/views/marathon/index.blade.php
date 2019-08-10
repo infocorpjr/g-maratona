@@ -40,7 +40,7 @@
                                         </h2>
                                         <h4 class="m-0">
                                             <i class="fa fa-calendar-day"></i> {{$marathon->date->format('d.m.Y H:i:s')}}
-                                            ( {{$marathon->date->diffForHumans()}} )
+                                                ( {{$marathon->date->diffForHumans()}} )
                                         </h4>
                                         <code>
                                             #{{$marathon->id}} Updated {{$marathon->updated_at->format('d.m.Y H:i:s')}}

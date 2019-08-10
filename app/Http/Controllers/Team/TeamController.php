@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Team;
 
 use App\Models\Marathon;
 use App\Models\Team;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -107,12 +106,25 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $marathonIdentification
      * @param int $teamIdentification
      * @return \Illuminate\Http\Response
      */
-    public function destroy($marathonIdentification, $teamIdentification)
+    public function destroy($teamIdentification)
     {
-        //
+        $team = Team::findOrFail($teamIdentification);
+
+        // Se o time já está inscrito na maratona não pode ser removido ...
+        if ($team->marathon) {
+            return redirect()->back()->withErrors([
+                'Você não pode remover este time, você precisa desfazer a matrícula '
+            ]);
+        }
+
+        // Se o time já foi validado, não pode ser removido ...
+        if ($team->validated) {
+            return redirect()->back()->withErrors([
+                'Seu time já foi validado, e não pode ser removido'
+            ]);
+        }
     }
 }

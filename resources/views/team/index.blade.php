@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-5">Meus times</h1>
+        <h1 class="mt-5">Todos os meus times</h1>
+        @include('team.create')
         <div class="card card-b mt-5 mb-4">
             <div class="card-body p-2">
                 <div class="row justify-content-between">
@@ -25,25 +26,6 @@
                                 aria-expanded="false" aria-controls="collapse">
                             <i class="fa fa-2x fa-plus-circle"></i>
                         </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-0">
-            <div class="collapse {{ $errors->all() ? 'show' : '' }}" id="collapse">
-                <div class="card">
-                    <div class="card-header pr-2">
-                        <div class="text-right">
-                            <button class="btn btn-link" data-toggle="collapse"
-                                    data-target="#collapse"
-                                    aria-expanded="false" aria-controls="collapse">
-                                <i class="fa fa-2x fa-angle-double-up text-white"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        @include('team.create')
                     </div>
                 </div>
             </div>
