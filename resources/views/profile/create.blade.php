@@ -16,8 +16,8 @@
 
             <div class="input-group card-c mb-3">
                 <div class="input-group-text bg-dark">RGA</div>
-                <input id="rga_format" class="form-control" name="rga" value="{{$profile->rga}}"
-                       placeholder="" v-mask="'############'">
+                <input id="rga_format" class="form-control rga_format" name="rga" value="{{$profile->rga}}"
+                       placeholder="" >
             </div>
             @if ($errors->has('rga'))
                 <p class="text-danger blink-1">{{ $errors->first('rga') }}</p>
@@ -25,7 +25,7 @@
 
             <div class="input-group card-c mb-3">
                 <div class="input-group-text bg-dark">CPF</div>
-                <input id="cpf_format" class="form-control" name="cpf" value="{{$profile->cpf}}"
+                <input id="cpf_format" class="form-control cpf_format" name="cpf" value="{{$profile->cpf}}"
                        placeholder="Ex: Time X"
                        v-mask="'###.###.###-##'">
             </div>
