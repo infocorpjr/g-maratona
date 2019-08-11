@@ -4,6 +4,15 @@
     @includeWhen($errors->any(), 'message.errors')
     <div class="container mb-5">
 
+        <div class="mt-5 row">
+            <div class="col-6">
+                <h1>Time</h1>
+            </div>
+            <div class="col-6 text-right">
+                <a href="{{route("team.index")}}" class="btn btn-dark subtitle">Voltar</a>
+            </div>
+        </div>
+
         @if($marathons)
             <h1 class="mt-5">Evento(s) com período de inscrição abertos</h1>
         @endif

@@ -42,7 +42,7 @@ class TeamController extends Controller
             return redirect()->back();
         }
 
-        // VALIDACAO
+        // VALIDACAO se algum integrante da equipe está em algum time
         foreach ($participantsTeam as $participant) {
             // Verificacao dos participantes
             $aux = DB::table('teams')
