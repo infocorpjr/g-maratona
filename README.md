@@ -1,4 +1,4 @@
-![Logo do projeto](http://maratona.ic.ufmt.br/wp-content/uploads/2017/06/LogoMaratona.jpg)
+![Logo da Maratona](https://user-images.githubusercontent.com/38927366/62840547-79f27980-bc6a-11e9-85f4-ef2f15daaa2d.png)
 
 # Maratona de Programação
 
