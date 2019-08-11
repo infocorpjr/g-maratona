@@ -46,7 +46,7 @@ class TeamPolicy
     }
 
     /**
-    * Determine whether the user can destroy a team.
+    * Determine whether the user can store a team.
     *
     * @param \App\User $user O usuário autenticado
     * @param \App\Models\Team $team O time para verificação
@@ -54,7 +54,7 @@ class TeamPolicy
     */
     public function store(User $user, Team $team)
     {
-        return $user-id === $team->user_id;
+        return $user->id === $team->user_id;
     }
  
 }
