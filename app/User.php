@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Actor;
 use App\Models\Participant;
+use App\Models\Profile;
 use App\Models\Team;
 use App\Models\Technician;
 use App\Models\Voluntary;
@@ -102,5 +103,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function technician()
     {
         return $this->hasOne(Technician::class);
+    }
+
+    /**
+     * Obtém os perfil pertencente a este usuário.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
     }
 }

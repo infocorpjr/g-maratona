@@ -27,7 +27,9 @@ Route::get('/home', 'HomeController@index')
 
 Route::group(["middleware" => ["auth", "verified"]], function () {
 
-    Route::put('role/change', 'Role\RoleController@changeRole')
+    Route::resource('profile', 'Profile\ProfileController',['only' => ['update','delete','index']]);
+
+    Route::put('role/change','Role\RoleController@changeRole')
         ->name('role.change');
     Route::resource('role', 'Role\RoleController', ['only' => ['update', 'index']]);
 

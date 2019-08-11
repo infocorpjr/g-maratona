@@ -76,7 +76,7 @@
         </div>
     </div>
     <div class="main-middle">
-        <div class="main-middle-content">
+        <div id="app" class="main-middle-content">
             @yield('content')
         </div>
     </div>
