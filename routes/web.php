@@ -31,9 +31,8 @@ Route::group(["middleware" => ["auth", "verified"]], function () {
         ->name('role.change');
     Route::resource('role', 'Role\RoleController',['only' => ['update','index']]);
 
-    Route::group(["middleware" => ["participant"]], function () {
-        Route::resource('team', 'Team\TeamController');
-    });
+    Route::resource('team', 'Team\TeamController');
+    Route::resource('team.participant', 'Team\Participant\ParticipantController');
 
     Route::group(["middleware" => ["admin"]], function () {
         Route::resource('user', 'User\UserController');
