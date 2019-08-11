@@ -17,7 +17,7 @@
         </div>
         <div class="card card-c mt-5">
             <div class="card-body">
-                @forelse ($participants as $participant)
+                @forelse ($participants as $key => $participant)
                     <div class="row align-items-center">
                         <div class="col">
                             <div class="row">
@@ -32,12 +32,36 @@
                                 </div>
                             </div>
                         </div>
-                        @can('update', $participant->actor)
-                            <div class="col-auto text-right">
-                                
-                                <code>Updated {{$participant->actor->updated_at->format('d.m.Y H:i:s')}}</code>
+                        <div class="col-auto text-right">
+                            <div class="row">
+                                <div class="col-auto p-1">
+                                    <button class="btn btn-outline-primary"
+                                            style="display: inline-block"
+                                            onclick="document.getElementById('{{md5($key . 'cancel')}}').style.display='inline-block';document.getElementById('{{md5($key . 'confirm')}}').style.display='inline-block';">
+                                        Adicionar
+                                    </button>
+                                </div>
+                                <div class="col-auto p-1">
+                                    <button id="{{md5($key . 'cancel')}}" class="btn btn-outline-light vibrate-3"
+                                            style="display: none;"
+                                            onclick="document.getElementById('{{md5($key . 'confirm')}}').style.display='none';this.style.display='none';">
+                                        Não!
+                                    </button>
+                                </div>
+                                <div class="col-auto p-1">
+                                    <form method="post" action="{{route('team.participant.store', [$team])}}">
+                                        @csrf()
+                                        <input type="hidden" name="user_id" value="{{$participant->id}}">
+                                        <button id="{{md5($key . 'confirm')}}" type="submit"
+                                                class="btn btn-outline-success vibrate-3"
+                                                style="display: none;animation-delay: 100ms">
+                                            Sim, tenho certeza!
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        @endcan
+                            <code>Updated {{$participant->actor->updated_at->format('d.m.Y H:i:s')}}</code>
+                        </div>
                     </div>
                 @empty
                     <div class="text-center">Que pena... Nenhum usuário encontrado!</div>
