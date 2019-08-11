@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Marathon\Team;
 
 use App\Models\Marathon;
+use App\Models\Participant;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
@@ -25,6 +27,37 @@ class TeamController extends Controller
         $marathon = Marathon::findOrFail($marathonIdentification);
         // Obtém informações sobre o time
         $team = Team::findOrFail($request->input('team_id'));
+
+        $participantsTeam = $team->participants()->get();
+
+        // Verificacao do lider
+        $teams = $team->where([
+            ["marathon_id", "=", $marathonIdentification],
+            ["user_id", "=", $team->user_id]
+        ])->count();
+
+        if ($teams != 0){
+            $request->session()
+                ->flash('created_unsuccessful', 'Não foi possível realizar a matrícula. Você já está cadastrado em uma equipe 😢');
+            return redirect()->back();
+        }
+
+        // VALIDACAO se algum integrante da equipe está em algum time
+        foreach ($participantsTeam as $participant) {
+            // Verificacao dos participantes
+            $aux = DB::table('teams')
+                ->join('participants', 'participants.team_id', '=', 'teams.id')
+                ->where([
+                    ["teams.marathon_id", "=", $marathonIdentification],
+                    ["participants.user_id", "=", $participant->user_id]
+                ])
+                ->count();
+            if ($aux != 0) {
+                $request->session()
+                    ->flash('created_unsuccessful', 'Não foi possível realizar a matrícula. ' . $participant->name . ' já está inscrito nessa maratona em outra equipe 😢');
+                return redirect()->back();
+            }
+        }
 
         // Se o time já tem uma maratona, redireciona de volta ...
         if ($team->marathon_id) {

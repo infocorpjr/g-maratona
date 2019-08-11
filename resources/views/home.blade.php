@@ -48,6 +48,16 @@
                             </div>
                         </a>
                     </div>
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <a href="{{route('profile.index')}}">
+                            <div class="card card-box card-b">
+                                <div class="card-body">
+                                    <i class="fa fa-5x fa-id-card text-white-50"></i>
+                                    <h5 class="text-center text-white">Perfil</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                     <div class="col-12 col-md-8"></div>
                     <div class="col-auto"></div>
                     <div class="col"></div>

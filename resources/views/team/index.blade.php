@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mt-5">Todos os meus times</h1>
+        <div class="mt-5 row">
+            <div class="col-6">
+                <h1>Todos os meus times</h1>
+            </div>
+            <div class="col-6 text-right">
+                <a href="{{route("home")}}" class="btn btn-dark subtitle">Voltar</a>
+            </div>
+        </div>
         @include('team.create')
         <div class="card card-b mt-5 mb-4">
             <div class="card-body p-2">

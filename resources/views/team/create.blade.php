@@ -23,5 +23,5 @@
                 <span class="text-danger blink-1">{{ $errors->first('description') }}</span>
             @endif
         </form>
-    </div>s
+    </div>
 </div>

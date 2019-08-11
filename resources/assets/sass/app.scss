@@ -72,16 +72,11 @@ main {
 }
 
 body {
-  &:before {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent url("../svg/971.svg") no-repeat 90% 90%;
-    background-size: 40%;
-    content: '';
-    position: fixed;
-  }
+  background-image: url("../svg/971.svg");
+  background-position-x: 90%;
+  background-position-y: 90%;
+  background-repeat: no-repeat;
+  background-size: 40%;
 }
 
 code {
@@ -219,4 +214,38 @@ code {
 
 .row > div {
   padding: 15px;
+}
+
+.img_listras {
+}
+
+.img_listras:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 15%;
+  height: 2%;
+  background: #9561e2;
+}
+
+.img_listras:before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: -5px;
+  width: 10%;
+  height: 2%;
+  background: #3490dc;
+}
+
+/* Aparência que terá o seletor de arquivo */
+.upload_file {
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 20px
+}
+
+.upload_file[type='file'] {
+  display: none
 }

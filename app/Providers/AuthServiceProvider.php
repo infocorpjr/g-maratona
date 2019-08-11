@@ -6,6 +6,7 @@ use App\User;
 use App\Models\Actor;
 use App\Policies\User\UserPolicy;
 use App\Policies\User\Actor\ActorPolicy;
+use App\Policies\Team\TeamPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -19,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         User::class => UserPolicy::class,
         Actor::class => ActorPolicy::class,
+        Team::class => TeamPolicy::class
     ];
 
     /**
