@@ -1,4 +1,5 @@
-![Logo da Maratona](https://user-images.githubusercontent.com/38927366/62840547-79f27980-bc6a-11e9-85f4-ef2f15daaa2d.png)
+![Maratona](https://user-images.githubusercontent.com/38927366/62840611-7b707180-bc6b-11e9-9595-3967d9d40f5f.jpg)
+
 
 # Maratona de Programação
 
