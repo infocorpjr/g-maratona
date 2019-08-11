@@ -33,7 +33,7 @@ class Team extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,"user_id");
     }
 
     /**
@@ -43,13 +43,13 @@ class Team extends Model
      */
     public function marathon()
     {
-        return $this->belongsTo(Marathon::class);
+        return $this->belongsTo(Marathon::class,"marathon_id");
     }
 
     /**
      * Obtém os participantes pertencentes a este time
      *
-     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function participants()
     {
