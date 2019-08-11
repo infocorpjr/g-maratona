@@ -1,5 +1,4 @@
 <div class="card card-b">
-    <h3 class="p-3">Adicionar time</h3>
     @include('message.store')
     <div class="card-body p-3">
         <form class="m-0" method="post" action="{{route('profile.update', $profile->id)}}"
