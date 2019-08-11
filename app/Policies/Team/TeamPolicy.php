@@ -22,27 +22,39 @@ class TeamPolicy
     }
     
     /**
-     * Determine whether the user can update a team.
-     *
-     * @param \App\User $user O usuário autenticado
-     * @param \App\Models\Team $team O time para verificação
-     * @return mixed
-     */
+    * Determine whether the user can update a team.
+    *
+    * @param \App\User $user O usuário autenticado
+    * @param \App\Models\Team $team O time para verificação
+    * @return mixed
+    */
     public function update(User $user, Team $team)
     {
       return $user->id === $team->user_id;
     }
  
-     /**
-      * Determine whether the user can destroy a team.
-      *
-      * @param \App\User $user O usuário autenticado
-      * @param \App\Models\Team $team O time para verificação
-      * @return mixed
-      */
+    /**
+    * Determine whether the user can destroy a team.
+    *
+    * @param \App\User $user O usuário autenticado
+    * @param \App\Models\Team $team O time para verificação
+    * @return mixed
+    */
     public function destroy(User $user, Team $team)
     {
       return $user->id === $team->user_id;
+    }
+
+    /**
+    * Determine whether the user can destroy a team.
+    *
+    * @param \App\User $user O usuário autenticado
+    * @param \App\Models\Team $team O time para verificação
+    * @return mixed
+    */
+    public function store(User $user, Team $team)
+    {
+        return $user-id === $team->user_id;
     }
  
 }
