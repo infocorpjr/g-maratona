@@ -27,8 +27,10 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import {mask} from 'vue-the-mask'
 const app = new Vue({
     el: '#app',
+    directives: {mask}
 });
 
 /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Profile;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -16,7 +17,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $profile = Profile::paginate();
+        $profile = Auth::user()->profile()->get()->first();
 
         return view("profile.index")
             ->with("profile",$profile);
@@ -96,11 +97,12 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $profile = Profile::findOrFail($id);
+
         // Atualiza foto do avatar
         $avatarURL = null;
-        if ($request->file('avatar_url')) {
-            $avatar = $request->file('imageCapa');
-            $avatarURL = $avatar->store('images/avatar/' . time(), ['disk' => 'public']);
+        if ($request->file('avatarImage')) {
+            $avatar = $request->file('avatarImage');
+            $avatarURL = $avatar->store('images/avatar/' . time(),['disk' => 'public']);
 
             // Adiciona campo no vetor referente a extension
             $request->merge([
@@ -111,14 +113,15 @@ class ProfileController extends Controller
         $oldimage = $profile->avatar_url;
 
         if ($profile->update($request->all())){
-            if ($request->file('avatar_url'))
+            if ($request->file('avatarImage')){
                 Storage::disk('public')->delete($oldimage);
+            }
 
             $request->session()->flash('update_successful', 'Perfil atualizado com sucesso');
             return redirect()->route('profile.index');
         }
 
-        if ($request->file('avatar_url'))
+        if ($request->file('avatarImage'))
             Storage::disk('public')->delete($avatarURL);
 
         $request->session()->flash('update_successful', 'Erro ao editar o perfil');

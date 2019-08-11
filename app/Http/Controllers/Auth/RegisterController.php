@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Actor;
+use App\Models\Profile;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -76,6 +77,11 @@ class RegisterController extends Controller
             'is_technician' => false,
             'is_voluntary' => false,
             'is_participant' => true,
+        ]);
+
+        Profile::create([
+            'user_id' => $user->id,
+            'name' => $user->name,
         ]);
 
         return $user;

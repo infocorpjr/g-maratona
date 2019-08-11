@@ -220,3 +220,37 @@ code {
 .row > div {
   padding: 15px;
 }
+
+.img_listras {
+}
+
+.img_listras:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 15%;
+  height: 2%;
+  background: #9561e2;
+}
+
+.img_listras:before {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: -5px;
+  width: 10%;
+  height: 2%;
+  background: #3490dc;
+}
+
+/* Aparência que terá o seletor de arquivo */
+.upload_file {
+  color: #fff;
+  cursor: pointer;
+  padding: 6px 20px
+}
+
+.upload_file[type='file'] {
+  display: none
+}

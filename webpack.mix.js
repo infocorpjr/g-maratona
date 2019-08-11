@@ -17,4 +17,4 @@ mix.js('resources/assets/js/app.js', 'public/js')
 mix.sass('resources/assets/sass/auth.scss', 'public/css');
 
 // Meu dropzone bonito
-mix.js('resources/assets/js/dropzone.js', 'public/js')
+mix.js('resources/assets/js/dropzone.js', 'public/js');
