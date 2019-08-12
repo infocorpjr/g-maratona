@@ -71,11 +71,11 @@ class TeamController extends Controller
 
         // Verifica se o usuario pode vizualizar
         $aux = $user->teams()->where([
-            ['user_id','=',Auth::id()],
-            ['id','=',$teamIdentification]
+            ['user_id', '=', Auth::id()],
+            ['id', '=', $teamIdentification]
         ])->get()->count();
 
-        if ($aux == 0){
+        if ($aux == 0) {
             abort(403);
         }
 
@@ -87,8 +87,8 @@ class TeamController extends Controller
             ->get();
 
         $participantes = collect();
-        foreach ($team->participants as $data){
-            $perfil = Profile::where('user_id','=',$data->user_id)->get()->first();
+        foreach ($team->participants as $data) {
+            $perfil = Profile::where('user_id', '=', $data->user_id)->get()->first();
             $perfil["email"] = User::findOrFail($data->user_id)->email;
             $participantes->add($perfil);
         }
@@ -96,7 +96,7 @@ class TeamController extends Controller
         return view('team.show')
             ->with('team', $team)
             ->with('marathons', $marathons)
-            ->with('participants',$participantes);
+            ->with('participants', $participantes);
     }
 
     /**
@@ -129,10 +129,11 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param int $teamIdentification
      * @return \Illuminate\Http\Response
      */
-    public function destroy($teamIdentification)
+    public function destroy(Request $request, $teamIdentification)
     {
         $team = Team::findOrFail($teamIdentification);
 
@@ -149,5 +150,15 @@ class TeamController extends Controller
                 'Seu time já foi validado, e não pode ser removido'
             ]);
         }
+
+        if ($team->delete()) {
+            $request->session()->flash('created_successful', 'O recurso foi deletado');
+            // Sucesso! Redireciona para a página de visualização do álbum.
+            return redirect()->route('team.index');
+        }
+
+        $request->session()->flash('created_unsuccessful', 'Falha ao deletar o time.');
+        // Sucesso! Redireciona para a página de visualização do álbum.
+        return redirect()->back();
     }
 }

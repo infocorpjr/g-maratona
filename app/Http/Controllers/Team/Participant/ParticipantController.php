@@ -8,6 +8,7 @@ use App\Models\Participant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ParticipantController extends Controller
 {
@@ -32,15 +33,20 @@ class ParticipantController extends Controller
         // Busca todos os usuários que são participantes
 
         $participants = User::with('actor')
-            ->join('participants', 'participants.user_id', '=', 'users.id')
+            ->whereNotIn('users.id', [Auth::user()->id])
             ->where([
-                ['name', 'like', '%' . $q . '%'],
-                ['users.id', '!=', Auth::user()->id],
+                ['users.name', 'like', '%' . $q . '%'],
+                // Apeans usuarios que já se cadastraram
                 ['users.create_profile', '=', true],
-                ['participants.team_id', '!=', $team->id]
+                // Membros já na equipe
             ])
             ->whereHas('actor', function ($query) use ($q) {
                 $query->where('is_participant', true);
+            })
+            ->wherenotExists(function ($query) use ($team) {
+                $query->select(DB::raw(1))
+                    ->from('participants')
+                ->whereIn("team_id",[$team->id]);
             })
             ->get();
 
