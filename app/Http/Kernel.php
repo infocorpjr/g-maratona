@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsCreatedProfile;
 use App\Http\Middleware\IsParticipant;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -63,7 +64,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'participant' => IsParticipant::class,
-        'admin' => IsAdmin::class
+        'admin' => IsAdmin::class,
+        'IsCreatedProfile' => IsCreatedProfile::class
     ];
 
     /**

@@ -7,8 +7,9 @@
             @method("put")
             <div class="input-group card-c mb-3">
                 <div class="input-group-text bg-dark">Nome</div>
-                <input class="form-control" name="name" value="{{$profile->name}}"
-                       placeholder="Ex: Time X">
+                <div class="mt-2 ml-2">
+                    <h3>{{$profile->name}}</h3>
+                </div>
             </div>
             @if ($errors->has('name'))
                 <p class="text-danger blink-1">{{ $errors->first('name') }}</p>
@@ -37,7 +38,7 @@
             </div>
             <div class="input-group card-c mb-3">
                 <div class="img_listras">
-                    <img class="img-thumbnail" src="{{asset("/storage/".$profile->avatar_url)}}" alt="">
+                    <img class="img-thumbnail" style="width: 50%" src="{{asset("/storage/".$profile->avatar_url)}}" alt="">
                 </div>
             </div>
             <div class="input-group card-c mb-3">
@@ -49,7 +50,6 @@
             @if ($errors->has('avatar_url'))
                 <p class="text-danger blink-1">{{ $errors->first('avatar_url') }}</p>
             @endif
-
             <div class="input-group card-c mb-3 mt-5" style="justify-content: flex-end;">
                 <div class="input-group-text bg-dark">
                     <button class="btn btn-primary text-uppercase font-weight-bold" type="submit">Salvar</button>

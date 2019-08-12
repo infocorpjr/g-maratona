@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Team;
 
 use App\Models\Marathon;
+use App\Models\Profile;
 use App\Models\Team;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -77,15 +79,24 @@ class TeamController extends Controller
             abort(403);
         }
 
-        $team = Team::with('participants')->findOrFail($teamIdentification);
+        $team = Team::with('participants')
+            ->findOrFail($teamIdentification);
         // Pesquisa por maratonas com período de inscrição aberto ...
         $marathons = Marathon::where('starts', '<', now())
             ->where('ends', '>', now())
             ->get();
 
+        $participantes = collect();
+        foreach ($team->participants as $data){
+            $perfil = Profile::where('user_id','=',$data->user_id)->get()->first();
+            $perfil["email"] = User::findOrFail($data->user_id)->email;
+            $participantes->add($perfil);
+        }
+
         return view('team.show')
             ->with('team', $team)
-            ->with('marathons', $marathons);
+            ->with('marathons', $marathons)
+            ->with('participants',$participantes);
     }
 
     /**

@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container">
+        <br>
+        @include("message.message")
         <div class="mt-5 row">
             <div class="col-6">
                 <h1>Meu perfil</h1>

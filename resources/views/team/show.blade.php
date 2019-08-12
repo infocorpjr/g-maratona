@@ -3,7 +3,6 @@
 @section('content')
     @includeWhen($errors->any(), 'message.errors')
     <div class="container mb-5">
-
         <div class="mt-5 row">
             <div class="col-6">
                 <h1>Time</h1>
@@ -12,7 +11,7 @@
                 <a href="{{route("team.index")}}" class="btn btn-dark subtitle">Voltar</a>
             </div>
         </div>
-
+        @include("message.message")
         @if($marathons)
             <h1 class="mt-5">Evento(s) com período de inscrição abertos</h1>
         @endif
@@ -85,9 +84,9 @@
                             <div class="col-6">{{$team->description}}</div>
                             <div class="col-6 text-right">
                                 {{-- TODO: Adicionar Participantes --}}
-                                <button class="btn btn-dark">
+                                <a class="btn btn-dark" href="{{route("team.participant.index",$team->id)}}">
                                     Adicionar Participantes
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -138,6 +137,45 @@
                         @include('team.edit')
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="card card-a mt-5">
+            <div class="card-body">
+
+                @forelse ($participants as $participant)
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <i class="fa fa-4x fa-user-circle"></i>
+                                </div>
+                                <div class="col">
+                                    {{$participant->name}} <br>
+                                    <small class="">- {{$participant->email}}</small>
+                                    <br>
+                                    <code>Updated {{$participant->created_at->format('d.m.Y')}}</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto text-right">
+                            <div class="btn-group">
+                                <form method="post"
+                                      action="{{route('team.participant.destroy',[$team->id, $participant->id])}}">
+                                    @csrf
+                                    {{method_field('delete')}}
+                                    <button class="btn btn-warning" type="submit" name="participant_id"
+                                            value="{{ $participant->id }}">
+                                        Remover Participante
+                                    </button>
+                                </form>
+                            </div>
+                            <code>Updated {{$participant->updated_at->format('d.m.Y H:i:s')}}</code>
+                        </div>
+                    </div>
+                @empty
+                    <div class="text-center">Que pena... Nenhum usuário encontrado!</div>
+                @endforelse
             </div>
         </div>
     </div>

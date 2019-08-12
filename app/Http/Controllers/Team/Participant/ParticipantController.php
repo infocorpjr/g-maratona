@@ -7,6 +7,7 @@ use App\Models\Team;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ParticipantController extends Controller
 {
@@ -21,15 +22,27 @@ class ParticipantController extends Controller
         //
         $team = Team::findOrFail($teamIdentification);
 
+        if (Auth::user()->id !== $team->user_id) {
+            abort(403);
+        }
+
         // Recupera a query de busca ...
         $q = request('q', '');
 
         // Busca todos os usuários que são participantes
 
-        $participants = User::with('actor')->where('name', 'like', '%' . $q . '%')
+        $participants = User::with('actor')
+            ->join('participants', 'participants.user_id', '=', 'users.id')
+            ->where([
+                ['name', 'like', '%' . $q . '%'],
+                ['users.id', '!=', Auth::user()->id],
+                ['users.create_profile', '=', true],
+                ['participants.team_id', '!=', $team->id]
+            ])
             ->whereHas('actor', function ($query) use ($q) {
                 $query->where('is_participant', true);
-            })->get();
+            })
+            ->get();
 
         return view('team.participant.index')
             ->with('team', $team)
@@ -76,11 +89,31 @@ class ParticipantController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $teamI
+     * @param $userId
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(Request $request, $teamId, $userId)
     {
-        //
+        $team = Team::findOrFail($teamId);
+        if (Auth::user()->id != $team->user_id) {
+            abort(403);
+        }
+
+        $participante = Participant::where([
+            ['team_id', '=', Auth::user()->id],
+            ['user_id', '=', $userId]
+        ])->get()->first();
+
+        if ($participante->delete()) {
+            $request->session()->flash('successful', 'Participante excluido com sucesso');
+            // Sucesso! Redireciona de volta.
+            return redirect()->back();
+        }
+
+        $request->session()->flash('unsuccessful', 'Não foi possível excluir o participantes');
+        // Sucesso! Redireciona de volta.
+        return redirect()->back();
     }
 }

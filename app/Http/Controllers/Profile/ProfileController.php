@@ -96,6 +96,11 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules = [
+            'cpf' => 'required|string|min:14',
+        ];
+        $this->validate($request, $rules);
+
         $profile = Profile::findOrFail($id);
 
         // Atualiza foto do avatar
@@ -116,15 +121,18 @@ class ProfileController extends Controller
             if ($request->file('avatarImage')){
                 Storage::disk('public')->delete($oldimage);
             }
+            $user = Auth::user();
+            $user->create_profile = 1;
+            $user->update();
 
-            $request->session()->flash('update_successful', 'Perfil atualizado com sucesso');
+            $request->session()->flash('successful', 'Perfil atualizado com sucesso');
             return redirect()->route('profile.index');
         }
 
         if ($request->file('avatarImage'))
             Storage::disk('public')->delete($avatarURL);
 
-        $request->session()->flash('update_successful', 'Erro ao editar o perfil');
+        $request->session()->flash('unsuccessful', 'Erro ao editar o perfil');
         return redirect()->route('profile.index');
     }
 
@@ -141,12 +149,12 @@ class ProfileController extends Controller
         if ($profile->delete()){
             Storage::disk('public')->delete($profile->avatar_url);
 
-            $request->session()->flash('deleted_successful', 'Perfil excluido com sucesso');
+            $request->session()->flash('successful', 'Perfil excluido com sucesso');
             // Sucesso! Redireciona de volta.
             return redirect()->route('back.event.index');
         }
 
-        $request->session()->flash('deleted_unsuccessful', 'Não foi possivel deletar o recurso.');
+        $request->session()->flash('unsuccessful', 'Não foi possivel deletar o recurso.');
         // Sucesso! Redireciona de volta.
         return redirect()->back();
     }
