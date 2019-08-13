@@ -54,6 +54,9 @@ if [ ! -d /var/www/$DOMAIN ]; then
     php artisan key:generate && php artisan storage:link && php artisan queue:restart
     # Adiciona a senha do email para o arquivo de configurações
     php artisan env:set MAIL_PASSWORD=$MAIL_PASSWORD
+    # Altera de desenvolvimeto para produção no arquivo de configuração, isso é necessário pois alguns comandos
+    # do artisan não são executados se a aplicação estiver em modo de desenvolvimento
+    php artisan env:set APP_ENV=production
     # Altera o proprietário do diretório
     sudo chown www-data:www-data storage -R
     # Notificação do slack
