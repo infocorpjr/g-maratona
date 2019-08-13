@@ -21,7 +21,7 @@ MESSAGE="
 }
 "
 # Muda para o dirtório padrão dos projetos no servidor
-cd /var/www/
+cd /var/www/$DOMAIN
 # Ataulizada o repositório da aplicação
 git checkout production $GIT_REMOTE_SSH .
 git pull origin production $GIT_REMOTE_SSH .
