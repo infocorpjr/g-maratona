@@ -34,7 +34,7 @@ cp .env.production .env
 php artisan key:generate
 
 # Adiciona a senha do email
-php artisan env:set MAIL_PASSWORD=$MAIL_PASSWORD
+php artisan env:set MAIL_USERNAME=$MAIL_USERNAME
 php artisan env:set MAIL_PASSWORD=$MAIL_PASSWORD
 
 # Adiciona a senha do email para o admin
