@@ -22,12 +22,15 @@ MESSAGE="
 "
 # Muda para o dirtório padrão dos projetos no servidor
 cd /var/www/$DOMAIN
+sudo chown $user:$user ./ -R
+sudo chown $user:www-data ./storage/ -R
 # Ataulizada o repositório da aplicação
 git checkout production $GIT_REMOTE_SSH .
 git pull origin production $GIT_REMOTE_SSH .
 # COMPOSER
 composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
 # Configuracoes de ambiente
+rm .env
 cp .env.production .env
 php artisan key:generate
 
@@ -51,6 +54,7 @@ php artisan storage:link
 php artisan migrate
 
 # Altera o proprietário do diretório
+sudo chown www-data:www-data database -R
 sudo chown www-data:www-data storage -R
 
 # Notificação do slack
