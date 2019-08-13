@@ -58,7 +58,7 @@ if [ ! -d /var/www/$DOMAIN ]; then
     # do artisan não são executados se a aplicação estiver em modo de desenvolvimento
     php artisan env:set APP_ENV=production
     # Altera o proprietário do diretório
-    sudo chown www-data:www-data storage -R
+    sudo chown www-data:www-data storage . -R
     # Notificação do slack
     curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" "$SLACK_WEBHOOK"
     exit
