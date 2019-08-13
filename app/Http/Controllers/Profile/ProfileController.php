@@ -20,7 +20,7 @@ class ProfileController extends Controller
         $profile = Auth::user()->profile()->get()->first();
 
         return view("profile.index")
-            ->with("profile",$profile);
+            ->with("profile", $profile);
     }
 
     /**
@@ -107,7 +107,7 @@ class ProfileController extends Controller
         $avatarURL = null;
         if ($request->file('avatarImage')) {
             $avatar = $request->file('avatarImage');
-            $avatarURL = $avatar->store('images/avatar/' . time(),['disk' => 'public']);
+            $avatarURL = $avatar->store('images/avatar/' . time(), ['disk' => 'public']);
 
             // Adiciona campo no vetor referente a extension
             $request->merge([
@@ -117,8 +117,8 @@ class ProfileController extends Controller
 
         $oldimage = $profile->avatar_url;
 
-        if ($profile->update($request->all())){
-            if ($request->file('avatarImage')){
+        if ($profile->update($request->all())) {
+            if ($request->file('avatarImage')) {
                 Storage::disk('public')->delete($oldimage);
             }
             $user = Auth::user();
@@ -129,8 +129,9 @@ class ProfileController extends Controller
             return redirect()->route('profile.index');
         }
 
-        if ($request->file('avatarImage'))
+        if ($request->file('avatarImage')) {
             Storage::disk('public')->delete($avatarURL);
+        }
 
         $request->session()->flash('unsuccessful', 'Erro ao editar o perfil');
         return redirect()->route('profile.index');
@@ -146,7 +147,7 @@ class ProfileController extends Controller
     {
         $profile = Profile::findOrFail($id);
 
-        if ($profile->delete()){
+        if ($profile->delete()) {
             Storage::disk('public')->delete($profile->avatar_url);
 
             $request->session()->flash('successful', 'Perfil excluido com sucesso');

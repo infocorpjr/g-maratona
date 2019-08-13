@@ -15,7 +15,7 @@ class Participant extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'team_id', 'name', 'course', 'shirt_size', 'rga', 'birthday'
+        'user_id', 'team_id', 'validated'
     ];
 
     /**
@@ -65,7 +65,7 @@ class Participant extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class,"user_id");
+        return $this->belongsTo(User::class, "user_id");
     }
 
     /**
@@ -75,6 +75,6 @@ class Participant extends Model
      */
     public function team()
     {
-        return $this->belongsTo(Team::class,"team_id");
+        return $this->belongsTo(Team::class, "team_id");
     }
 }

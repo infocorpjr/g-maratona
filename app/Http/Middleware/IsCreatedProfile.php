@@ -16,7 +16,7 @@ class IsCreatedProfile
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->create_profile){
+        if (Auth::user()->create_profile) {
             return $next($request);
         }
         $request->session()->flash('unsuccessful', 'Favor criar um perfil válido para acessar o recurso');
