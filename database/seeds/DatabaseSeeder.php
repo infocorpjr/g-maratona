@@ -12,8 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $output = new ConsoleOutput();
+        // Fist seed de prod
+        if (env("APP_ENV") === "production") {
+            $this->call(UsersProdTableSeeder::class);
+            return;
+        }
 
+        $output = new ConsoleOutput();
         $this->call(UsersTableSeeder::class);
         $this->call(MarathonsTableSeeder::class);
         $output->writeln("Finalizado seed =) ...");
