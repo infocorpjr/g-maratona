@@ -107,9 +107,9 @@ deploy_production:
     - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME MAIL_PASSWORD=$MAIL_PASSWORD ADMIN_EMAIL=$ADMIN_EMAIL ADMIN_PASSWORD=$ADMIN_PASSWORD" | tee deploy/vars-production.sh
     # Junta o arquivo de variáveis e o arquivo de para build da aplicação ...
     - cat deploy/vars-production.sh deploy/deploy-production.sh > deploy/production.sh
-    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/prodution.sh
+    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/production.sh
   environment:
-    name: prodution
+    name: production
     url: http://maratona.infocorpjr.com
   when: manual
   only:
