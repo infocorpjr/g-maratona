@@ -22,8 +22,9 @@ MESSAGE="
 "
 # Muda para o dirtório padrão dos projetos no servidor
 cd /var/www/
-# Clona o repositório da aplicação
-git pull origin master $GIT_REMOTE_SSH .
+# Ataulizada o repositório da aplicação
+git checkout production $GIT_REMOTE_SSH .
+git pull origin production $GIT_REMOTE_SSH .
 # COMPOSER
 composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
 # Configuracoes de ambiente
