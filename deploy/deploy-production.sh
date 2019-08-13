@@ -2,7 +2,7 @@
 
 # O subdomínio para o projeto, sem o 'wwww', esse subdomínio também
 # será o nome do projeto dentro do '/var/www'
-DOMAIN="review5.infocorpjr.com"
+DOMAIN="maratona.infocorpjr.com"
 # O endereço do repositório
 GIT_REMOTE_SSH="git@gitlab.com:infocorp/g-maratona.git"
 # A mensagem que será enviada para o slack, veja mais detalhes de formatação em:
@@ -11,7 +11,7 @@ MESSAGE="
 {
     \"attachments\": [
         {
-            \"pretext\": \" *Maratona de Programação* está no servidor de homologação \",
+            \"pretext\": \" *Maratona de Programação* está no servidor de *Produção* \",
             \"color\": \"#36a64f\",
             \"title\": \"http://$DOMAIN\",
             \"title_link\": \"http://$DOMAIN\",
@@ -20,57 +20,44 @@ MESSAGE="
     ]
 }
 "
-# Remove o diretório da aplicação
-if [ ! -d /var/www/$DOMAIN ]; then
-    # CONFIGURAÇÕES DE SUBDOMÍNIO NO APACHE
-    sudo echo "
-    <VirtualHost *:80>
-        ServerAdmin suporte@infocorp.ic.ufmt.br
-        ServerName ${DOMAIN}
-        ServerAlias www.${DOMAIN}
-        DocumentRoot /var/www/${DOMAIN}/public
-        ErrorLog ${APACHE_LOG_DIR}/error.log
-        CustomLog ${APACHE_LOG_DIR}/access.log combined
-        <Directory /var/www/${DOMAIN}/public>
-            Allowoverride All
-        </Directory>
-    </VirtualHost>" | sudo tee /etc/apache2/sites-available/$DOMAIN.conf
-    # Faz a ativação do site e reinicia o servidor
-    sudo a2ensite $DOMAIN && sudo /etc/init.d/apache2 restart
-    # Muda para o dirtório padrão dos projetos no servidor
-    cd /var/www/
-    # Cria o diretório do projeto, mudara para o diretório e altera as permissões de pripriedade ...
-    sudo mkdir $DOMAIN && cd $DOMAIN && sudo chown $USER:$USER . -R
-    # Clona o repositório da aplicação
-    git pull -b master $GIT_REMOTE_SSH .
-    # COMPOSER
-    composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
-    # BANCO DE DADOS & STORAGE
-    if [ ! -d /var/www/$DOMAIN/database/database.sqlite ]; then
-      # VARIÁVEIS DE AMBIENTE
-      cp .env.deploy .env
-      touch database/database.sqlite
-      php artisan migrate --seed
-      php artisan storage:link
-    fi
-    php artisan migrate
 
-    # OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
-    php artisan key:generate
-    php artisan queue:restart
+# Faz a ativação do site e reinicia o servidor
+sudo a2ensite $DOMAIN && sudo /etc/init.d/apache2 restart
+# Muda para o dirtório padrão dos projetos no servidor
+cd /var/www/
+# Clona o repositório da aplicação
+git pull origin master $GIT_REMOTE_SSH .
+# COMPOSER
+composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
+# Configuracoes de ambiente
+cp .env.production .env
+php artisan key:generate
 
-    # Adiciona a senha do email
-    php artisan env:set MAIL_PASSWORD=$MAIL_PASSWORD
-    php artisan env:set MAIL_PASSWORD=$MAIL_PASSWORD
+# Adiciona a senha do email
+php artisan env:set MAIL_PASSWORD=$MAIL_PASSWORD
+php artisan env:set MAIL_PASSWORD=$MAIL_PASSWORD
 
-    # Adiciona a senha do email para o admin
-    php artisan env:set ADMIN_EMAIL=$ADMIN_EMAIL
-    php artisan env:set ADMIN_PASSWORD=$ADMIN_PASSWORD
+# Adiciona a senha do email para o admin
+php artisan env:set ADMIN_EMAIL=$ADMIN_EMAIL
+php artisan env:set ADMIN_PASSWORD=$ADMIN_PASSWORD
 
-    # Altera o proprietário do diretório
-    sudo chown www-data:www-data storage -R
-
-    # Notificação do slack
-    curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" "$SLACK_WEBHOOK"
-    exit
+# BANCO DE DADOS & STORAGE
+if [ ! -d /var/www/$DOMAIN/database/database.sqlite ]; then
+  # VARIÁVEIS DE AMBIENTE
+  touch database/database.sqlite
+  # Quando e producao executa so o usuario admin
+  php artisan migrate --seed
 fi
+
+php artisan storage:link
+php artisan migrate
+
+# OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
+php artisan queue:restart
+
+# Altera o proprietário do diretório
+sudo chown www-data:www-data storage -R
+
+# Notificação do slack
+curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" "$SLACK_WEBHOOK"
+exit
