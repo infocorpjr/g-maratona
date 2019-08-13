@@ -33,7 +33,7 @@ class Team extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class,"user_id");
+        return $this->belongsTo(User::class, "user_id");
     }
 
     /**
@@ -43,7 +43,7 @@ class Team extends Model
      */
     public function marathon()
     {
-        return $this->belongsTo(Marathon::class,"marathon_id");
+        return $this->belongsTo(Marathon::class, "marathon_id");
     }
 
     /**

@@ -25,12 +25,10 @@ class CreateProfilesTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->string("name");
             $table->string("rga")->nullable();
             $table->string("siapi")->nullable();
             $table->string("cpf")->nullable();
             $table->string("avatar_url")->nullable();
-
             $table->timestamps();
         });
     }

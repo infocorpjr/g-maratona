@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Marathon\Team;
 
-use App\Models\Marathon;
-use App\Models\Participant;
 use App\Models\Team;
+use App\Models\Marathon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -36,9 +35,11 @@ class TeamController extends Controller
             ["user_id", "=", $team->user_id]
         ])->count();
 
-        if ($teams != 0){
-            $request->session()
-                ->flash('created_unsuccessful', 'Não foi possível realizar a matrícula. Você já está cadastrado em uma equipe 😢');
+        if ($teams != 0) {
+            $request->session()->flash(
+                'created_unsuccessful',
+                'Não foi possível realizar a matrícula. Você já está cadastrado em uma equipe 😢'
+            );
             return redirect()->back();
         }
 
@@ -53,8 +54,11 @@ class TeamController extends Controller
                 ])
                 ->count();
             if ($aux != 0) {
-                $request->session()
-                    ->flash('created_unsuccessful', 'Não foi possível realizar a matrícula. ' . $participant->name . ' já está inscrito nessa maratona em outra equipe 😢');
+                $request->session()->flash(
+                    'created_unsuccessful',
+                    'Não foi possível realizar a matrícula. ' .
+                    $participant->name . ' já está inscrito nessa maratona em outra equipe 😢'
+                );
                 return redirect()->back();
             }
         }

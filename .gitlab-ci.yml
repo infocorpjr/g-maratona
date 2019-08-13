@@ -89,8 +89,8 @@ deploy_review:
   script:
     - *init_ssh
     # Adiciona os valores das variáveis de ambiente em um arquivo ...
-    - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME " | tee deploy/vars.sh
-    # Junta o arquivo de variáveis e o arquivo de para build da aplicação ...
+    - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME MAIL_PASSWORD=$MAIL_PASSWORD " | tee deploy/vars.sh
+    # Junta o arquivo de variáveis de ambiente e o arquivo de instalação e configuração da aplicação
     - cat deploy/vars.sh deploy/deploy.sh > deploy/preview.sh
     - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/preview.sh
   environment:
@@ -98,3 +98,19 @@ deploy_review:
     url: http://review5.infocorpjr.com
   only:
     - master
+
+deploy_production:
+  stage: deploy
+  script:
+    - *init_ssh
+    # Adiciona os valores das variáveis de ambiente em um arquivo ...
+    - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME MAIL_PASSWORD=$MAIL_PASSWORD ADMIN_EMAIL=$ADMIN_EMAIL ADMIN_PASSWORD=$ADMIN_PASSWORD" | tee deploy/vars-prodution.sh
+    # Junta o arquivo de variáveis e o arquivo de para build da aplicação ...
+    - cat deploy/vars-prodution.sh deploy/deploy-prodution.sh > deploy/prodution.sh
+    - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/prodution.sh
+  environment:
+    name: prodution
+    url: http://maratona.infocorpjr.com
+  when: manual
+  only:
+    - prodution
