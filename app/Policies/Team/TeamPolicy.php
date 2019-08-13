@@ -18,7 +18,7 @@ class TeamPolicy
     */
     public function create(User $user)
     {
-      return $user->actor->is_administrator;
+        return $user->actor->is_administrator;
     }
     
     /**
@@ -30,7 +30,7 @@ class TeamPolicy
     */
     public function update(User $user, Team $team)
     {
-      return $user->id === $team->user_id;
+        return $user->id === $team->user_id;
     }
  
     /**
@@ -42,7 +42,7 @@ class TeamPolicy
     */
     public function destroy(User $user, Team $team)
     {
-      return $user->id === $team->user_id;
+        return $user->id === $team->user_id;
     }
 
     /**
@@ -56,5 +56,4 @@ class TeamPolicy
     {
         return $user->id === $team->user_id;
     }
- 
 }

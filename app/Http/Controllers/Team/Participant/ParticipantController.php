@@ -46,7 +46,7 @@ class ParticipantController extends Controller
             ->wherenotExists(function ($query) use ($team) {
                 $query->select(DB::raw(1))
                     ->from('participants')
-                ->whereIn("team_id",[$team->id]);
+                ->whereIn("team_id", [$team->id]);
             })
             ->get();
 
