@@ -104,9 +104,9 @@ deploy_production:
   script:
     - *init_ssh
     # Adiciona os valores das variáveis de ambiente em um arquivo ...
-    - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME MAIL_PASSWORD=$MAIL_PASSWORD ADMIN_EMAIL=$ADMIN_EMAIL ADMIN_PASSWORD=$ADMIN_PASSWORD" | tee deploy/vars-prodution.sh
+    - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME MAIL_PASSWORD=$MAIL_PASSWORD ADMIN_EMAIL=$ADMIN_EMAIL ADMIN_PASSWORD=$ADMIN_PASSWORD" | tee deploy/vars-production.sh
     # Junta o arquivo de variáveis e o arquivo de para build da aplicação ...
-    - cat deploy/vars-prodution.sh deploy/deploy-prodution.sh > deploy/prodution.sh
+    - cat deploy/vars-production.sh deploy/deploy-production.sh > deploy/production.sh
     - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/prodution.sh
   environment:
     name: prodution
