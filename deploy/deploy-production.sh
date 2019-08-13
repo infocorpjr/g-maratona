@@ -49,9 +49,6 @@ fi
 php artisan storage:link
 php artisan migrate
 
-# OUTRAS CONFIGURAÇÕES DA APLICAÇÃO
-php artisan queue:restart
-
 # Altera o proprietário do diretório
 sudo chown www-data:www-data storage -R
 
