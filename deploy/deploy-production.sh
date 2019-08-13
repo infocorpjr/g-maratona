@@ -20,9 +20,6 @@ MESSAGE="
     ]
 }
 "
-
-# Faz a ativação do site e reinicia o servidor
-sudo a2ensite $DOMAIN && sudo /etc/init.d/apache2 restart
 # Muda para o dirtório padrão dos projetos no servidor
 cd /var/www/
 # Clona o repositório da aplicação
