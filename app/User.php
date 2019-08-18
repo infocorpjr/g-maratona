@@ -8,9 +8,10 @@ use App\Models\Profile;
 use App\Models\Team;
 use App\Models\Technician;
 use App\Models\Voluntary;
-use App\Notifications\VerifyEmailQueued;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\ResetPasswordNotification;
+use App\Notifications\VerificationEmailNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -45,15 +46,25 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * Send the password reset notification.
+     *
+     * @param string $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
      * Send the email verification notification.
      *
      * @return void
      */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmailQueued());
+        $this->notify(new VerificationEmailNotification());
     }
-
 
     /**
      * Obtém o ator atribuído a este usuário.
