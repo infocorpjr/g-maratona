@@ -4,7 +4,7 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 ATENÇÃO! Este arquivo de script é responsável somente pela atualização da aplicação no servidor, todas as configurações
-adicionais devem ser feitas manualmente, tendo e vista que a aplicação está em produção !!!! Do not be a bitch.
+adicionais devem ser feitas manualmente, tendo e vista que a aplicação está em produção !!!! Do not be a bitch. 
 
 -----------------------------------------------------------------------------------------------------------------------'
 
