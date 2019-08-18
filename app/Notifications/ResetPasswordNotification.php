@@ -62,6 +62,7 @@ class ResetPasswordNotification extends ResetPassword implements ShouldQueue
 
         return (new MailMessage)
             ->subject('Redefinir de senha')
+            ->salutation('Olá')
             // Atenção! Não remover os comentários '// @codeCoverageIgnore' ao final da linha
             // porque são configurações do phpunit. Essa configuração foi adicionada para ignorar o limite máximo
             // de caractére por linha, obedecendo o padrão.

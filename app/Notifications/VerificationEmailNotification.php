@@ -26,7 +26,7 @@ class VerificationEmailNotification extends VerifyEmail implements ShouldQueue
         }
 
         return (new MailMessage)
-            ->subject('Verifique seu endereço de email')
+            ->subject('Verificar email')
             ->line('Por favor clique no botão abaixo para verificar seu email.')
             ->action('Verificar Email', $verificationUrl)
             ->line('Se você não criou esse email, nenhuma ação é necessária.')
