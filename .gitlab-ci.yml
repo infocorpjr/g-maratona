@@ -89,7 +89,7 @@ deploy_review:
   script:
     - *init_ssh
     # Adiciona os valores das variáveis de ambiente em um arquivo ...
-    - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME MAIL_PASSWORD=$MAIL_PASSWORD " | tee deploy/vars.sh
+    - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME MAIL_PASSWORD=$MAIL_PASSWORD " | tee deploy/vars.sh  > /dev/null
     # Junta o arquivo de variáveis de ambiente e o arquivo de instalação e configuração da aplicação
     - cat deploy/vars.sh deploy/deploy.sh > deploy/preview.sh
     - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/preview.sh
@@ -106,7 +106,7 @@ deploy_production:
     # Adiciona os valores das variáveis de ambiente em um arquivo ...
     - echo "SLACK_WEBHOOK=$SLACK_WEBHOOK MAIL_USERNAME=$MAIL_USERNAME MAIL_PASSWORD=$MAIL_PASSWORD ADMIN_EMAIL=$ADMIN_EMAIL ADMIN_PASSWORD=$ADMIN_PASSWORD" | tee deploy/vars-production.sh
     # Junta o arquivo de variáveis e o arquivo de para build da aplicação ...
-    - cat deploy/vars-production.sh deploy/deploy-production.sh > deploy/production.sh
+    - cat deploy/vars-production.sh deploy/deploy-production.sh > deploy/production.sh  > /dev/null
     - ssh -T suporte@"$SSH_KNOWN_HOSTS" < deploy/production.sh
   environment:
     name: production
