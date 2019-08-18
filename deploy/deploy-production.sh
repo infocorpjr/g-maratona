@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+: ' -------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------
+
+ATENÇÃO! Este arquivo de script é responsável somente pela atualização da aplicação no servidor, todas as configurações
+adicionais devem ser feitas manualmente, tendo e vista que a aplicação está em produção !!!! Do not be a bitch.
+
+-----------------------------------------------------------------------------------------------------------------------'
+
 # O subdomínio para o projeto, sem o 'wwww', esse subdomínio também
 # será o nome do projeto dentro do '/var/www'
 DOMAIN="maratona.infocorpjr.com"
@@ -22,41 +30,34 @@ MESSAGE="
 "
 # Muda para o dirtório padrão dos projetos no servidor
 cd /var/www/$DOMAIN
-sudo chown $user:$user ./ -R
-sudo chown $user:www-data ./storage/ -R
-# Ataulizada o repositório da aplicação
-git checkout production $GIT_REMOTE_SSH .
-git pull origin production $GIT_REMOTE_SSH .
+# Coloca a aplicação em modo de manutenção
+php artisan down
+# IMPORTANTE! Muda o proprietário dos subdiretório para o usuário atual, sem isso, pode haver erro de permissão
+# na atualização e configuração da aplicação.
+sudo chown $USER:$USER ./ -R
+# Atualiza o repositório da aplicação com o repositório remoto
+git fetch origin
+git checkout production
+git reset --hard origin/production
+git pull origin production
 # COMPOSER
 composer install --prefer-dist --no-ansi --no-interaction --no-progress --no-scripts
-# Configuracoes de ambiente
-rm .env
+# Copia o arquivo de configurações da aplicação
 cp .env.production .env
+# Gera uma nova chave para a aplicação
 php artisan key:generate
-
-# Adiciona a senha do email
+# Adiciona a informações do email usado para enviar notificações via email para os usuários.
 php artisan env:set MAIL_USERNAME=$MAIL_USERNAME
 php artisan env:set MAIL_PASSWORD=$MAIL_PASSWORD
-
-# Adiciona a senha do email para o admin
+# Adiciona informações sobre os usuários padrão da aplicação
 php artisan env:set ADMIN_EMAIL=$ADMIN_EMAIL
 php artisan env:set ADMIN_PASSWORD=$ADMIN_PASSWORD
-
-# BANCO DE DADOS & STORAGE
-if [ ! -d /var/www/$DOMAIN/database/database.sqlite ]; then
-  # VARIÁVEIS DE AMBIENTE
-  touch database/database.sqlite
-  # Quando e producao executa so o usuario admin
-  php artisan migrate --seed
-fi
-
-php artisan storage:link
+# Executa a migração no banco.
 php artisan migrate
-
 # Altera o proprietário do diretório
-sudo chown www-data:www-data database -R
-sudo chown www-data:www-data storage -R
-
+sudo chown www-data:www-data . -R
+# Sobe a aplicação novamente
+php artisan up
 # Notificação do slack
 curl -X POST -H 'Content-type: application/json' --data "$MESSAGE" "$SLACK_WEBHOOK"
 exit
